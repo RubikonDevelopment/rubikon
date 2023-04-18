@@ -1,29 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "inditium",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Inditium",
+  "description": "A powerful minecraft client mod",
   "authors": [
-    "Me!"
+    "xHyroM <https://xhyrom.dev>",
+    "slosa <https://github.com/slosa>"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://xhyrom.dev/",
+    "sources": "https://github.com/xhyrom-utils/inditium"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/inditium/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "dev.inditium.ExampleMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "inditium.mixins.json"
   ],
 
   "depends": {
