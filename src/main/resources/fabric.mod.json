@@ -20,7 +20,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.inditium.ExampleMod"
+      "dev.inditium.Inditium"
     ]
   },
   "mixins": [
