@@ -1,8 +1,10 @@
-# Fabric Example Mod
+# Inditium a next-gen fabric hack client
+made by tntj, Hyro & slosa
 
 ## Setup
-
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+1. clone the repo
+2. then do ./gradle build
+3. after that./gradle runClient
 
 ## License
 

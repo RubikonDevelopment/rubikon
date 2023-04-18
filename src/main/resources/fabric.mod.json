@@ -21,6 +21,9 @@
   "entrypoints": {
     "main": [
       "dev.inditium.Inditium"
+    ],
+    "client": [
+      "dev.inditium.client.InfitiumClient"
     ]
   },
   "mixins": [
