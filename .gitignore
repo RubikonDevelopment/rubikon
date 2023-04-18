@@ -30,7 +30,9 @@ bin/
 
 # fabric
 
-run/
+!run/
+run/*
+
 !run/mods/
 
 # java
