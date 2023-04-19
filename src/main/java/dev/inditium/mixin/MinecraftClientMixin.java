@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MinecraftClientMixin {
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void init(CallbackInfo info) {
+		//only for initializing nanoVG
 		NVContext.initialize();
 	}
 }

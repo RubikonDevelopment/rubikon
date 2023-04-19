@@ -1,9 +1,14 @@
 package dev.inditium;
 
 import dev.inditium.managers.ModuleManager;
+import dev.inditium.renderer.nanvog.core.NVContext;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import org.lwjgl.nanovg.NVGColor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.lwjgl.nanovg.NanoVG.*;
 
 public class Inditium implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
