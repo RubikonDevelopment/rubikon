@@ -3,13 +3,15 @@ package dev.inditium.renderer.nanvog.core;
 
 import dev.inditium.Inditium;
 import net.minecraft.client.MinecraftClient;
+import org.lwjgl.glfw.GLFW;
 
-import static java.lang.Math.*;
 import static org.lwjgl.nanovg.NanoVG.*;
 import static org.lwjgl.nanovg.NanoVGGL3.*;
 
 import java.util.function.Consumer;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL14.glBlendFuncSeparate;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 
@@ -34,10 +36,20 @@ public class NVContext {
         float contentscale = (float) mc.getWindow().getScaleFactor();
         float width  = (int)(mc.getWindow().getFramebufferWidth() / contentscale);
         float height = (int)(mc.getWindow().getFramebufferHeight() / contentscale);
+
+        glPushAttrib(GL_ALL_ATTRIB_BITS);
+        // setup state
+        glDisable(GL_LINE_SMOOTH);
+        glDisable(GL_ALPHA_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
+
         nvgBeginFrame(ctx, width, height, contentscale);
         //passes the current context as argument
         drawCall.accept(ctx);
         //stop drawing
         nvgEndFrame(ctx);
+        glPopAttrib();
     }
 }
