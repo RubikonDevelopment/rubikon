@@ -27,11 +27,9 @@ public class Inditium implements ModInitializer {
 
 		HudRenderCallback.EVENT.register((e,l) -> {
 			NVContext.draw((ctx) ->{
-				nvgBeginPath(ctx);
 				nvgRect(ctx, 10, 10, 100, 100);
 				nvgFillColor(ctx, nvgColor(-1));
 				nvgFill(ctx);
-				nvgClosePath(ctx);
 			});
 		});
 	}
