@@ -1,9 +1,9 @@
-package dev.inditium.api.stores;
+package dev.inditium.api.repository;
 
 import java.util.Collection;
 import java.util.HashMap;
 
-public class Store<U, T> {
+public class Repository<U, T> {
     private final HashMap<U, T> store = new HashMap<>();
 
     public void add(U key, T value) {
@@ -26,7 +26,7 @@ public class Store<U, T> {
         return store.keySet();
     }
 
-    public HashMap<U, T> getRawStore() {
+    public HashMap<U, T> getRawRepository() {
         return store;
     }
 }

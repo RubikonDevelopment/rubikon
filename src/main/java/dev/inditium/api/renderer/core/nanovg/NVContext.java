@@ -1,14 +1,7 @@
-package dev.inditium.renderer.nanvog.core;
-
-
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
-
-
+package dev.inditium.api.renderer.core.nanovg;
 
 import dev.inditium.Inditium;
 import net.minecraft.client.MinecraftClient;
-
 
 import static org.lwjgl.nanovg.NanoVG.*;
 import static org.lwjgl.nanovg.NanoVGGL3.*;
