@@ -1,4 +1,4 @@
-# Inditium a next-gen fabric hack client
+# Rubikon a next-gen fabric hack client
 made by tntj, Hyro & slosa
 
 ## Setup
