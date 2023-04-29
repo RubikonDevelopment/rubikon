@@ -1,6 +1,6 @@
-package dev.inditium.mixin;
+package dev.rubikon.mixin;
 
-import dev.inditium.api.renderer.core.nanovg.NVContext;
+import dev.rubikon.api.renderer.core.nanovg.NVContext;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

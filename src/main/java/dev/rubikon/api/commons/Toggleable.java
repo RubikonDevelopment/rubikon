@@ -1,4 +1,5 @@
-package dev.inditium.api.abstraction;
+package dev.rubikon.api.commons;
+
 
 public interface Toggleable {
     void toggle();

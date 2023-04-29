@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "inditium",
+  "id": "rubikon",
   "version": "${version}",
 
-  "name": "Inditium",
+  "name": "Rubikon",
   "description": "A powerful minecraft client mod",
   "authors": [
     "xHyroM <https://xhyrom.dev>",
@@ -15,16 +15,16 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/inditium/icon.png",
+  "icon": "assets/rubikon/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "dev.inditium.Inditium"
+      "dev.rubikon.Rubikon"
     ]
   },
   "mixins": [
-    "inditium.mixins.json"
+    "rubikon.mixins.json"
   ],
 
   "depends": {

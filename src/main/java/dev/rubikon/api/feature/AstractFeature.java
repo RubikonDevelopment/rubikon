@@ -1,6 +1,6 @@
-package dev.inditium.api.feature;
+package dev.rubikon.api.feature;
 
-import dev.inditium.api.abstraction.Toggleable;
+import dev.rubikon.api.commons.Toggleable;
 
 /**
  * a object that can be toggled on/ off

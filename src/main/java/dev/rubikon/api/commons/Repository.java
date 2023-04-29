@@ -1,8 +1,11 @@
-package dev.inditium.api.repository;
+package dev.rubikon.api.commons;
 
 import java.util.Collection;
 import java.util.HashMap;
 
+/**
+ * abstact repository for saving into lists
+ */
 public class Repository<U, T> {
     private final HashMap<U, T> store = new HashMap<>();
 

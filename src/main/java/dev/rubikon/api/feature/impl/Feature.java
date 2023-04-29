@@ -1,9 +1,9 @@
-package dev.inditium.repositories.factories;
+package dev.rubikon.api.feature.impl;
 
 import com.google.gson.JsonObject;
-import dev.inditium.api.abstraction.Serializable;
-import dev.inditium.api.feature.AstractFeature;
-import dev.inditium.api.repository.Repository;
+import dev.rubikon.api.commons.Serializable;
+import dev.rubikon.api.feature.AstractFeature;
+import dev.rubikon.api.commons.Repository;
 
 public class Feature {
     private final String name;

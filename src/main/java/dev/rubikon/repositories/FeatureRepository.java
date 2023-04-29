@@ -1,7 +1,7 @@
-package dev.inditium.repositories;
+package dev.rubikon.repositories;
 
-import dev.inditium.features.Test;
-import dev.inditium.repositories.factories.Feature;
+import dev.rubikon.features.Test;
+import dev.rubikon.api.feature.impl.Feature;
 
 public class FeatureRepository {
 
