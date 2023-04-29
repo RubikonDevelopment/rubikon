@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import dev.inditium.api.abstraction.Serializable;
 import dev.inditium.api.feature.Feature;
 import dev.inditium.api.repository.Repository;
-import net.minecraft.client.Keyboard;
 
 public class FeatureFactory {
     private final String name;

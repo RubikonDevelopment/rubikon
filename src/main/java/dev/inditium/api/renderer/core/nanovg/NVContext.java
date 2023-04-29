@@ -1,8 +1,12 @@
 package dev.inditium.api.renderer.core.nanovg;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import dev.inditium.Inditium;
 import net.minecraft.client.MinecraftClient;
+import org.lwjgl.opengl.GL11;
 
+import static com.mojang.blaze3d.platform.GlConst.*;
 import static org.lwjgl.nanovg.NanoVG.*;
 import static org.lwjgl.nanovg.NanoVGGL3.*;
 
@@ -36,5 +40,14 @@ public class NVContext {
         drawCall.accept(ctx);
         //stop drawing
         nvgEndFrame(ctx);
+        //restores back the pre-rendering minecraft state
+        restoreState();
+    }
+
+    private static void restoreState() {
+        GlStateManager._disableCull();
+        GlStateManager._disableDepthTest();
+        RenderSystem.enableBlend();
+        RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ZERO, GlStateManager.DstFactor.ONE);
     }
 }
