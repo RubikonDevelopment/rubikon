@@ -2,18 +2,18 @@ package dev.inditium.repositories.factories;
 
 import com.google.gson.JsonObject;
 import dev.inditium.api.abstraction.Serializable;
-import dev.inditium.api.feature.Feature;
+import dev.inditium.api.feature.AstractFeature;
 import dev.inditium.api.repository.Repository;
 
-public class FeatureFactory {
+public class Feature {
     private final String name;
-    private final Feature feature;
+    private final AstractFeature astractFeature;
     private String description;
     private final int key;
 
-    public FeatureFactory(String name,Feature feature,int key,String description) {
+    public Feature(String name, AstractFeature astractFeature, int key, String description) {
         this.name = name;
-        this.feature = feature;
+        this.astractFeature = astractFeature;
         this.key = key;
         this.description = description;
     }
@@ -23,9 +23,9 @@ public class FeatureFactory {
         return new FeatureBuilder();
     }
 
-    public static class FeatureBuilder extends Repository<FeatureFactory,Integer> implements Serializable {
+    public static class FeatureBuilder extends Repository<Feature,Integer> implements Serializable {
         private String name;
-        private Feature feature;
+        private AstractFeature astractFeature;
         private String description = "No Description provided";
         private int key;
 
@@ -33,8 +33,8 @@ public class FeatureFactory {
             this.name = name;
             return this;
         }
-        public FeatureBuilder feature(Feature feature) {
-            this.feature = feature;
+        public FeatureBuilder feature(AstractFeature astractFeature) {
+            this.astractFeature = astractFeature;
             return this;
         }
         public FeatureBuilder key(int key) {
@@ -48,8 +48,8 @@ public class FeatureFactory {
 
         public void build() {
             //reflection for settings and loading must be done here later
-            FeatureFactory featureFactory = new FeatureFactory(name,feature,key,description);
-            add(featureFactory,hashCode());
+            Feature feature = new Feature(name, astractFeature,key,description);
+            add(feature,astractFeature.hashCode());
         }
 
         @Override

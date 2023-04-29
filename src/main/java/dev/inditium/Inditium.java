@@ -22,17 +22,9 @@ public class Inditium implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		HudRenderCallback.EVENT.register((e, l) -> {
-			NVContext.draw((vg) ->{
-				nvgRect(vg, 10, 10, 100, 100);
-				nvgFillColor(vg, nvgColor(-1));
-				nvgFill(vg);
-			});
+
 		});
 	}
-	public static NVGColor nvgColor(int argb) {
-		NVGColor _res = NVGColor.create();
-		nvgRGBA((byte) (argb >> 16 & 255), (byte) (argb >> 8 & 255), (byte) (argb >> 0 & 255), (byte) (argb >> 24 & 255), _res);
-		return _res;
-	}
+
 
 }

@@ -4,9 +4,6 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.inditium.Inditium;
 import net.minecraft.client.MinecraftClient;
-import org.lwjgl.opengl.GL11;
-
-import static com.mojang.blaze3d.platform.GlConst.*;
 import static org.lwjgl.nanovg.NanoVG.*;
 import static org.lwjgl.nanovg.NanoVGGL3.*;
 
@@ -40,7 +37,7 @@ public class NVContext {
         drawCall.accept(ctx);
         //stop drawing
         nvgEndFrame(ctx);
-        //restores back the pre-rendering minecraft state
+        //restores back the pre-rendering minecraft gl state
         restoreState();
     }
 

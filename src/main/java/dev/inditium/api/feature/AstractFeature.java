@@ -5,7 +5,7 @@ import dev.inditium.api.abstraction.Toggleable;
 /**
  * a object that can be toggled on/ off
  */
-public class Feature implements Toggleable {
+public class AstractFeature implements Toggleable {
     private boolean toggled = false;
 
     @Override
