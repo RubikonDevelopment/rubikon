@@ -1,6 +1,7 @@
 package dev.rubikon.mixin;
 
-import dev.rubikon.events.ScreenRenderCallback;
+import dev.rubikon.Rubikon;
+import dev.rubikon.events.ScreenRenderEvent;
 import net.minecraft.client.render.GameRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,6 +17,6 @@ public abstract class GameRendererMixin {
     @Inject(at = @At("TAIL"), method = "render")
     private void init(float tickDelta, long startTime, boolean tick,CallbackInfo info) {
         //findme :: screen render call
-        ScreenRenderCallback.EVENT.invoker().render(tickDelta);
+        Rubikon.getEventPubSub().publish(new ScreenRenderEvent(tickDelta));
     }
 }

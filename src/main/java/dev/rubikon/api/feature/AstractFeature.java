@@ -1,5 +1,6 @@
 package dev.rubikon.api.feature;
 
+import dev.rubikon.Rubikon;
 import dev.rubikon.api.commons.Toggleable;
 
 /**
@@ -10,11 +11,13 @@ public class AstractFeature implements Toggleable {
 
     @Override
     public void toggle() {
-    toggled = !toggled;
+        toggled = !toggled;
         if (toggled) {
+            Rubikon.getEventPubSub().subscribe(this);
             onEnable();
         } else {
             onDisable();
+            Rubikon.getEventPubSub().unsubscribe(this);
         }
     }
 

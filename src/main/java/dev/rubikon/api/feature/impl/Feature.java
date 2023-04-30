@@ -1,9 +1,13 @@
 package dev.rubikon.api.feature.impl;
 
 import com.google.gson.JsonObject;
+import dev.rubikon.Rubikon;
 import dev.rubikon.api.commons.Serializable;
 import dev.rubikon.api.feature.AstractFeature;
 import dev.rubikon.api.commons.Repository;
+import dev.rubikon.events.KeyPressEvent;
+
+import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 
 public class Feature {
     private final String name;
@@ -38,6 +42,7 @@ public class Feature {
             return this;
         }
         public FeatureBuilder key(int key) {
+            //should be a GLFW class key
             this.key = key;
             return this;
         }
@@ -48,8 +53,13 @@ public class Feature {
 
         public void build() {
             //reflection for settings and loading must be done here later
-            Feature feature = new Feature(name, astractFeature,key,description);
-            add(feature,astractFeature.hashCode());
+            //key toggle callback
+            Rubikon.getEventPubSub().subscribe(KeyPressEvent.class,event -> {
+                if (event.getKey() == this.key && event.getAction() == GLFW_PRESS) {
+                    astractFeature.toggle();
+                }
+            });
+            add(new Feature(name, astractFeature,key,description),astractFeature.hashCode());
         }
 
         @Override
