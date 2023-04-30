@@ -3,6 +3,7 @@ package dev.rubikon.api.feature;
 import dev.rubikon.Rubikon;
 import dev.rubikon.api.commons.Toggleable;
 import dev.rubikon.api.settings.Setting;
+import dev.rubikon.utils.ChatUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,9 +38,13 @@ public abstract class Feature implements Toggleable {
         if (toggled) {
             Rubikon.getEventPubSub().subscribe(this);
             onEnable();
+
+            ChatUtils.sendMessage("Feature (highlight)%s (default)has been enabled.", name);
         } else {
             onDisable();
             Rubikon.getEventPubSub().unsubscribe(this);
+
+            ChatUtils.sendMessage("Feature (highlight)%s (default)has been disabled.", name);
         }
     }
 }
