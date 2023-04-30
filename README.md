@@ -3,8 +3,8 @@ made by tntj, Hyro & slosa
 
 ## Setup
 1. clone the repo
-2. then do ./gradle build
-3. after that./gradle runClient
+2. then do ./gradlew build
+3. after that ./gradlew runClient
 
 ## License
 
