@@ -6,6 +6,7 @@ import dev.rubikon.api.settings.Setting;
 import dev.rubikon.utils.ChatUtils;
 import lombok.Getter;
 import lombok.Setter;
+import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 
