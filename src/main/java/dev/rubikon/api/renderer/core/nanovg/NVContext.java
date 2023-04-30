@@ -22,7 +22,7 @@ public class NVContext {
             //opengl 3 must be supported
             Rubikon.LOGGER.error("NVContext#initialize: Couldn't init NanoVG",new RuntimeException());
         }
-        Rubikon.LOGGER.info("NanoVG was succesfully intialized with opengl3 backend!");
+        Rubikon.LOGGER.info("NanoVG was successfully initialized with opengl3 backend!");
     }
 
     public static void draw(Consumer<Long> drawCall) {
