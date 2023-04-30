@@ -5,7 +5,11 @@ import dev.rubikon.Rubikon;
 import dev.rubikon.api.commons.Serializable;
 import dev.rubikon.api.feature.AstractFeature;
 import dev.rubikon.api.commons.Repository;
+import dev.rubikon.api.setting.AbstractSetting;
+import dev.rubikon.api.setting.impl.BooleanSetting;
 import dev.rubikon.events.KeyPressEvent;
+
+import java.lang.reflect.Field;
 
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 
@@ -52,7 +56,15 @@ public class Feature {
         }
 
         public void build() {
-            //reflection for settings and loading must be done here later
+            //loop through parent class and add setting fields into a list
+            for (Field field : astractFeature.getClass().getDeclaredFields()) {
+                Class<?> setting = (Class<?>) field.getType();
+                //check if non-null
+                assert field != null;
+                //set public
+                field.setAccessible(true);
+                //check for invidious sett and add into the list
+            }
             //key toggle callback
             Rubikon.getEventPubSub().subscribe(KeyPressEvent.class,event -> {
                 if (event.getKey() == this.key && event.getAction() == GLFW_PRESS) {
