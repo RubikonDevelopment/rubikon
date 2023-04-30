@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 
 /**
- * abstact repository for saving into lists
+ * Store is a generic class that stores a key and a value.
  */
-public class Repository<U, T> {
+public class Store<U, T> {
     private final HashMap<U, T> store = new HashMap<>();
 
     public void add(U key, T value) {

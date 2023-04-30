@@ -1,21 +1,27 @@
 package dev.rubikon.features;
 
 import dev.rubikon.Rubikon;
-import dev.rubikon.api.feature.AstractFeature;
-import dev.rubikon.api.setting.impl.BooleanSetting;
+import dev.rubikon.api.feature.Feature;
+import dev.rubikon.api.settings.types.BooleanSetting;
 
-public class Test extends AstractFeature {
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_K;
+
+public class Test extends Feature {
     private final BooleanSetting setting = new BooleanSetting("test","test",true);
+
+    public Test() {
+        super("Test", "Developer feature for testing purposes", GLFW_KEY_K);
+
+        getSettings().add(setting);
+    }
 
     @Override
     public void onEnable() {
         Rubikon.LOGGER.info("on");
-        super.onEnable();
     }
 
     @Override
     public void onDisable() {
         Rubikon.LOGGER.info("off");
-        super.onDisable();
     }
 }

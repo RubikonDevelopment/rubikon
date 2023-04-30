@@ -1,4 +1,4 @@
-package dev.rubikon.api.renderer.core.imgui;
+package dev.rubikon.renderer.core.imgui;
 
 import dev.rubikon.Rubikon;
 import imgui.ImGui;

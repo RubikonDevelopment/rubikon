@@ -1,4 +1,4 @@
-package dev.rubikon.api.renderer.core.nanovg;
+package dev.rubikon.renderer.core.nanovg;
 
 import dev.rubikon.Rubikon;
 import net.minecraft.client.MinecraftClient;
