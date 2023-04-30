@@ -1,5 +1,6 @@
 package dev.rubikon.api.setting.impl;
 
+import dev.rubikon.api.feature.impl.Feature;
 import dev.rubikon.api.setting.AbstractSetting;
 
 public class BooleanSetting extends AbstractSetting<Boolean> {

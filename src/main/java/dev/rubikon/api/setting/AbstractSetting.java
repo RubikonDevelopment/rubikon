@@ -1,5 +1,7 @@
 package dev.rubikon.api.setting;
 
+import dev.rubikon.api.feature.impl.Feature;
+
 public class AbstractSetting<Value> {
     public Value settingvalue;
 

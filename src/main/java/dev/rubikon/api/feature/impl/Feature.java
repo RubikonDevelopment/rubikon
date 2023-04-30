@@ -6,10 +6,15 @@ import dev.rubikon.api.commons.Serializable;
 import dev.rubikon.api.feature.AstractFeature;
 import dev.rubikon.api.commons.Repository;
 import dev.rubikon.api.setting.AbstractSetting;
+import dev.rubikon.api.setting.impl.ArraySetting;
 import dev.rubikon.api.setting.impl.BooleanSetting;
+import dev.rubikon.api.setting.impl.ColorSetting;
+import dev.rubikon.api.setting.impl.NumberSetting;
 import dev.rubikon.events.KeyPressEvent;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 
@@ -18,6 +23,8 @@ public class Feature {
     private final AstractFeature astractFeature;
     private String description;
     private final int key;
+    public final Set<AbstractSetting<?>> settingSet = new HashSet<>();
+
 
     public Feature(String name, AstractFeature astractFeature, int key, String description) {
         this.name = name;
@@ -56,14 +63,25 @@ public class Feature {
         }
 
         public void build() {
+            Feature builtfeature = new Feature(name, astractFeature,key,description);
             //loop through parent class and add setting fields into a list
             for (Field field : astractFeature.getClass().getDeclaredFields()) {
-                Class<?> setting = (Class<?>) field.getType();
-                //check if non-null
-                assert field != null;
                 //set public
                 field.setAccessible(true);
-                //check for invidious sett and add into the list
+                //check for invidious settings and add into the list
+                try {
+                    if (field.getType() == BooleanSetting.class) {
+                        builtfeature.settingSet.add((BooleanSetting) field.get(astractFeature));
+                    } else if (field.getType() == NumberSetting.class) {
+                        builtfeature.settingSet.add((NumberSetting) field.get(astractFeature));
+                    } else if (field.getType() == ArraySetting.class) {
+                        builtfeature.settingSet.add((ArraySetting) field.get(astractFeature));
+                    } else if (field.getType() == ColorSetting.class) {
+                        builtfeature.settingSet.add((ColorSetting) field.get(astractFeature));
+                    }
+                } catch (IllegalAccessException exception) {
+                    Rubikon.LOGGER.error("Feature.FeatureBuilder#build couldn't parse settings");
+                }
             }
             //key toggle callback
             Rubikon.getEventPubSub().subscribe(KeyPressEvent.class,event -> {
@@ -71,7 +89,7 @@ public class Feature {
                     astractFeature.toggle();
                 }
             });
-            add(new Feature(name, astractFeature,key,description),astractFeature.hashCode());
+            add(builtfeature,astractFeature.hashCode());
         }
 
         @Override
