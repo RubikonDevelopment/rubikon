@@ -1,7 +1,10 @@
 package dev.rubikon;
 
 import dev.rubikon.api.commons.Event;
+import dev.rubikon.api.renderer.core.imgui.ImGuiContext;
+import dev.rubikon.events.ScreenRenderEvent;
 import dev.rubikon.repositories.FeatureRepository;
+import imgui.ImGui;
 import io.github.nevalackin.radbus.PubSub;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -21,6 +24,13 @@ public class Rubikon implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Procgit eed with mild caution.
 		featureRepository.init();
+		eventPubSub.subscribe(ScreenRenderEvent.class,screenRenderEvent -> {
+			ImGuiContext.draw(draw ->{
+				ImGui.begin("test");
+				ImGui.text("yes");
+				ImGui.end();
+			});
+		});
 	}
 
 	public static PubSub<Event> getEventPubSub() {
