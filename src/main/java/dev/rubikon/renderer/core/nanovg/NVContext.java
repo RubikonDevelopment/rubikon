@@ -2,6 +2,8 @@ package dev.rubikon.renderer.core.nanovg;
 
 import dev.rubikon.Rubikon;
 import net.minecraft.client.MinecraftClient;
+import org.lwjgl.nanovg.NVGColor;
+
 import static org.lwjgl.nanovg.NanoVG.*;
 import static org.lwjgl.nanovg.NanoVGGL3.*;
 
@@ -39,4 +41,15 @@ public class NVContext {
         //stop drawing
         nvgEndFrame(ctx);
     }
+
+    public static long getContext() {
+        return ctx;
+    }
+
+    public static NVGColor nvgColor(int argb) {
+        NVGColor color = NVGColor.create();
+        nvgRGBA((byte) (argb >> 16 & 255), (byte) (argb >> 8 & 255), (byte) (argb >> 0 & 255), (byte) (argb >> 24 & 255), color);
+        return color;
+    }
+
 }

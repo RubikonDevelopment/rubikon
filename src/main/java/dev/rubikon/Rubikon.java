@@ -1,9 +1,11 @@
 package dev.rubikon;
 
 import dev.rubikon.api.commons.Event;
+import dev.rubikon.events.ScreenRenderEvent;
 import dev.rubikon.listeners.FeatureListener;
-import dev.rubikon.listeners.GuiListener;
+import dev.rubikon.renderer.core.imgui.ImGuiContext;
 import dev.rubikon.stores.Stores;
+import imgui.ImGui;
 import io.github.nevalackin.radbus.PubSub;
 import lombok.Getter;
 import net.fabricmc.api.ModInitializer;
@@ -24,10 +26,7 @@ public class Rubikon implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Procgit eed with mild caution.
-
 		Stores.init();
-
-		eventPubSub.subscribe(new GuiListener());
 		eventPubSub.subscribe(new FeatureListener());
 	}
 }
