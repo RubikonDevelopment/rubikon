@@ -3,6 +3,7 @@ package dev.rubikon.settings.types;
 import dev.rubikon.settings.Option;
 import lombok.Getter;
 import net.minecraft.nbt.NbtCompound;
+
 public class DoubleOption extends Option<Double> {
     @Getter
     private final double min, max;

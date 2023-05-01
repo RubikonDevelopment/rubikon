@@ -1,18 +1,20 @@
 package dev.rubikon.settings.types;
 
 import dev.rubikon.settings.Option;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.Registries;
 
 import java.util.function.Predicate;
 
-public class BoolOption extends Option<Boolean> {
-    private final Predicate<Boolean> validator;
+public class ItemOption extends Option<Item> {
+    private final Predicate<Item> validator;
 
-    public BoolOption(String name, String description, Boolean defaultValue) {
+    public ItemOption(String name, String description, Item defaultValue) {
         this(name, description, defaultValue, null);
     }
 
-    public BoolOption(String name, String description, Boolean defaultValue, Predicate<Boolean> validator) {
+    public ItemOption(String name, String description, Item defaultValue, Predicate<Item> validator) {
         super(name, description, defaultValue);
 
         this.validator = validator;
@@ -20,21 +22,21 @@ public class BoolOption extends Option<Boolean> {
 
     @Override
     protected NbtCompound save(NbtCompound nbt) {
-        nbt.putBoolean("value", get());
+        nbt.putInt("value", Registries.ITEM.getRawId(get()));
 
         return nbt;
     }
 
     @Override
-    protected Boolean load(NbtCompound nbt) {
+    protected Item load(NbtCompound nbt) {
         if (nbt.contains("value"))
-            set(nbt.getBoolean("value"));
+            set(Registries.ITEM.get(nbt.getInt("value")));
 
         return get();
     }
 
     @Override
-    public boolean isValid(Boolean value) {
+    public boolean isValid(Item value) {
         return validator == null || validator.test(value);
     }
 }

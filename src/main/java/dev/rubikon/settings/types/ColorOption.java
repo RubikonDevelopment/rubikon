@@ -4,10 +4,19 @@ import dev.rubikon.settings.Option;
 import net.minecraft.nbt.NbtCompound;
 
 import java.awt.Color;
+import java.util.function.Predicate;
 
 public class ColorOption extends Option<Color> {
+    private final Predicate<Color> validator;
+
     public ColorOption(String name, String description, Color defaultValue) {
+        this(name, description, defaultValue, null);
+    }
+
+    public ColorOption(String name, String description, Color defaultValue, Predicate<Color> validator) {
         super(name, description, defaultValue);
+
+        this.validator = validator;
     }
 
     @Override
@@ -27,6 +36,6 @@ public class ColorOption extends Option<Color> {
 
     @Override
     public boolean isValid(Color value) {
-        return true;
+        return validator == null || validator.test(value);
     }
 }

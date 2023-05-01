@@ -3,9 +3,19 @@ package dev.rubikon.settings.types;
 import dev.rubikon.settings.Option;
 import net.minecraft.nbt.NbtCompound;
 
+import java.util.function.Predicate;
+
 public class StringOption extends Option<String> {
+    private final Predicate<String> validator;
+
     public StringOption(String name, String description, String defaultValue) {
+        this(name, description, defaultValue, null);
+    }
+
+    public StringOption(String name, String description, String defaultValue, Predicate<String> validator) {
         super(name, description, defaultValue);
+
+        this.validator = validator;
     }
 
     @Override
@@ -25,6 +35,6 @@ public class StringOption extends Option<String> {
 
     @Override
     public boolean isValid(String value) {
-        return true;
+        return validator == null || validator.test(value);
     }
 }
