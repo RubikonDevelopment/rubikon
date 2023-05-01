@@ -8,10 +8,12 @@
   "client": [
     "ClientConnectionMixin",
     "ClientLoginNetworkHandlerMixin",
-    "ClientPlayNetworkHandler",
+    "ChatInputSuggestorMixin",
+    "ClientPlayNetworkHandlerMixin",
     "GameRendererMixin",
     "KeyboardMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "ScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1

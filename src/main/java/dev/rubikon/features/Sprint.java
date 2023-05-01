@@ -1,6 +1,5 @@
 package dev.rubikon.features;
 
-import dev.rubikon.Rubikon;
 import dev.rubikon.api.feature.Feature;
 import dev.rubikon.events.TickEvent;
 import io.github.nevalackin.radbus.Listen;
