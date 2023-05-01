@@ -1,14 +1,14 @@
 package dev.rubikon.api.settings.types;
 
-import dev.rubikon.api.settings.Setting;
+import dev.rubikon.api.settings.Option;
 import lombok.Getter;
 import net.minecraft.util.math.MathHelper;
 
-public class NumberSetting extends Setting<Number> {
+public class NumberOption extends Option<Number> {
     @Getter
     private final Number minValue, maxValue;
 
-    public NumberSetting(String name, String tooltip, Number minValue, Number value, Number maxValue) {
+    public NumberOption(String name, String tooltip, Number minValue, Number value, Number maxValue) {
         super(name, tooltip, value);
 
         this.minValue = minValue;

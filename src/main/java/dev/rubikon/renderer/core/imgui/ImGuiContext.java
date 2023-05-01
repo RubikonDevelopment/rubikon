@@ -28,6 +28,10 @@ public class ImGuiContext {
         Rubikon.LOGGER.info("ImGui was successfully initialized with opengl3 backend!");
     }
 
+    /**
+     * Draws imgui elements
+     * @param drawcall Allows to draw imgui elements
+     */
     public static void draw(Consumer<Void> drawcall) {
         //start drawing
         imGuiImplGlfw.newFrame();
