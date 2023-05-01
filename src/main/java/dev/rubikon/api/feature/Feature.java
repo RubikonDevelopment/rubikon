@@ -40,12 +40,12 @@ public abstract class Feature implements Toggleable {
             Rubikon.getEventPubSub().subscribe(this);
             onEnable();
 
-            ChatUtils.sendMessage("Feature (highlight)%s (default)has been enabled.", name);
+            ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#3df518>enabled<white>.", name);
         } else {
             onDisable();
             Rubikon.getEventPubSub().unsubscribe(this);
 
-            ChatUtils.sendMessage("Feature (highlight)%s (default)has been disabled.", name);
+            ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#eb3528>disabled<white>.", name);
         }
     }
 }

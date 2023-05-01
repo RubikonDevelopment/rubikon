@@ -10,16 +10,16 @@ import net.minecraft.util.Formatting;
 
 @UtilityClass
 public class ChatUtils {
-    private static TextColor HIGHLIGHT_COLOR = TextColor.parse("#da2424");
-    private static Text PREFIX = Text.literal("Rubikon")
+    private static final TextColor HIGHLIGHT_COLOR = TextColor.parse("#da2424");
+    private static final Text PREFIX = Text.literal("Rubikon")
             .setStyle(Style.EMPTY.withBold(true).withColor(HIGHLIGHT_COLOR));
 
     public static void sendMessage(String message, Object... args) {
-        sendMessage(null, Text.of(format(message, args)));
+        sendMessage(null, format(message, args));
     }
 
     public static void sendMessage(Text prefix, String message, Object... args) {
-        sendMessage(prefix, Text.of(format(message, args)));
+        sendMessage(prefix, format(message, args));
     }
 
     public static void sendMessage(Text prefix, Text msg) {
@@ -54,14 +54,66 @@ public class ChatUtils {
         return message;
     }
 
-    private static String format(String format, Object... args) {
-        String msg = String.format(format, args);
-        msg = msg
-                .replace("(default)", Formatting.WHITE.toString())
-                .replace("(highlight)", Formatting.RED.toString())
-                .replace("(bold)", Formatting.BOLD.toString())
-                .replace("(underline)", Formatting.UNDERLINE.toString());
+    private static MutableText format(String input, Object... args) {
+        input = String.format(input, args);
 
-        return msg;
+        MutableText output = Text.literal("");
+        Style currentStyle = Style.EMPTY;
+
+        while (!input.isEmpty()) {
+            int tagStart = input.indexOf("<");
+            if (tagStart == -1) {
+                // No more tags, add the remaining text as a plain string
+                output.append(Text.literal(input).setStyle(currentStyle));
+                break;
+            }
+
+            // Add the text before the tag as a plain string
+            output.append(Text.literal(input.substring(0, tagStart)).setStyle(currentStyle));
+
+            int tagEnd = input.indexOf(">");
+            if (tagEnd == -1) {
+                // Malformed tag, ignore it
+                input = input.substring(tagStart + 1);
+                continue;
+            }
+
+            String tag = input.substring(tagStart + 1, tagEnd);
+            input = input.substring(tagEnd + 1);
+
+            Style styleBuilder = currentStyle;
+
+            for (String token : tag.split(" ")) {
+                switch (token.toLowerCase()) {
+                    case "bold" -> styleBuilder = styleBuilder.withBold(true);
+                    case "italic" -> styleBuilder = styleBuilder.withItalic(true);
+                    case "underline" -> styleBuilder = styleBuilder.withUnderline(true);
+                    case "strikethrough" -> styleBuilder = styleBuilder.withStrikethrough(true);
+                    case "obfuscated" -> styleBuilder = styleBuilder.withObfuscated(true);
+                    case "highlight" -> styleBuilder = styleBuilder.withColor(HIGHLIGHT_COLOR);
+                    default -> {
+                        if (token.startsWith("#")) {
+                            try {
+                                styleBuilder = styleBuilder.withColor(TextColor.parse(token));
+                            } catch (IllegalArgumentException ignored) {
+                                // Not a valid color code, ignore it
+                            }
+                            break;
+                        }
+
+                        try {
+                            Formatting formatting = Formatting.byName(token.toUpperCase());
+                            styleBuilder = styleBuilder.withColor(formatting);
+                        } catch (IllegalArgumentException ignored) {
+                            // Not a recognized format code, ignore it
+                        }
+                    }
+                }
+            }
+
+            currentStyle = styleBuilder;
+        }
+
+        return output;
     }
 }
