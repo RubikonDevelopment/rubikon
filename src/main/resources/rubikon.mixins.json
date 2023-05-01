@@ -6,6 +6,8 @@
   "mixins": [
   ],
   "client": [
+    "ClientConnectionMixin",
+    "ClientLoginNetworkHandlerMixin",
     "ChatInputSuggestorMixin",
     "ClientPlayNetworkHandlerMixin",
     "GameRendererMixin",
