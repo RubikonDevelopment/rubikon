@@ -1,6 +1,6 @@
 package dev.rubikon.events;
 
-import dev.rubikon.api.commons.Event;
+import dev.rubikon.utils.Event;
 import net.minecraft.network.packet.s2c.login.LoginHelloS2CPacket;
 import net.minecraft.network.packet.s2c.login.LoginSuccessS2CPacket;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;

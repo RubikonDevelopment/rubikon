@@ -1,6 +1,6 @@
 package dev.rubikon.events;
 
-import dev.rubikon.api.commons.Event;
+import dev.rubikon.utils.Event;
 
 public class UpdateEvent implements Event {
 }

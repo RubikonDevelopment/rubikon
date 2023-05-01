@@ -1,6 +1,6 @@
 package dev.rubikon.events;
 
-import dev.rubikon.commons.Event;
+import dev.rubikon.utils.Event;
 
 /**
  * @param key The key code of the pressed key

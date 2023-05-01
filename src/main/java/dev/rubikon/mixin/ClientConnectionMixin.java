@@ -1,7 +1,6 @@
 package dev.rubikon.mixin;
 
 import dev.rubikon.Rubikon;
-import dev.rubikon.api.commons.Event;
 import dev.rubikon.events.PacketIncomingEvent;
 import dev.rubikon.events.PacketOutgoingEvent;
 import net.minecraft.network.ClientConnection;

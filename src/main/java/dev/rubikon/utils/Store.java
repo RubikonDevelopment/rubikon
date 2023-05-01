@@ -1,4 +1,4 @@
-package dev.rubikon.commons;
+package dev.rubikon.utils;
 
 import java.util.Collection;
 

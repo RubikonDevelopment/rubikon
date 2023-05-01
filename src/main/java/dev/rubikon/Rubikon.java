@@ -1,6 +1,6 @@
 package dev.rubikon;
 
-import dev.rubikon.commons.Event;
+import dev.rubikon.utils.Event;
 import dev.rubikon.listeners.FeatureListener;
 import dev.rubikon.renderer.core.Renderer;
 import dev.rubikon.things.Things;

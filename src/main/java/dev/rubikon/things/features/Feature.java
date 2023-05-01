@@ -1,8 +1,8 @@
 package dev.rubikon.things.features;
 
 import dev.rubikon.Rubikon;
-import dev.rubikon.commons.Serializable;
-import dev.rubikon.commons.Toggleable;
+import dev.rubikon.utils.Serializable;
+import dev.rubikon.utils.Toggleable;
 import dev.rubikon.settings.Option;
 import dev.rubikon.utils.ChatUtils;
 import lombok.Getter;

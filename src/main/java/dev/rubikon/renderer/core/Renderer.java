@@ -1,10 +1,9 @@
 package dev.rubikon.renderer.core;
 
-import dev.rubikon.commons.Store;
+import dev.rubikon.utils.Store;
 import dev.rubikon.renderer.core.imgui.ImGuiContext;
 import dev.rubikon.renderer.core.nanovg.NVContext;
 import lombok.Getter;
-import org.lwjgl.nanovg.NanoVG;
 
 import java.nio.ByteBuffer;
 import java.util.Collection;

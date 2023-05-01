@@ -1,6 +1,6 @@
 package dev.rubikon.events;
 
-import dev.rubikon.api.commons.Event;
+import dev.rubikon.utils.Event;
 import net.minecraft.network.listener.PacketListener;
 import net.minecraft.network.packet.Packet;
 

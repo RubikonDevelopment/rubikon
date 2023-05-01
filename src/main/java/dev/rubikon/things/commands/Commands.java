@@ -2,11 +2,10 @@ package dev.rubikon.things.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import dev.rubikon.commons.Store;
+import dev.rubikon.utils.Store;
 import dev.rubikon.things.Thing;
 import dev.rubikon.things.Things;
 import dev.rubikon.things.commands.commands.*;
-import dev.rubikon.things.features.Features;
 import lombok.Getter;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientCommandSource;

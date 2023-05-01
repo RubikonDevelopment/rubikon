@@ -1,6 +1,6 @@
 package dev.rubikon.things.features;
 
-import dev.rubikon.commons.Store;
+import dev.rubikon.utils.Store;
 import dev.rubikon.things.Thing;
 import dev.rubikon.things.Things;
 import dev.rubikon.things.features.misc.*;

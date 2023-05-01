@@ -1,7 +1,7 @@
 package dev.rubikon.things;
 
 import dev.rubikon.Rubikon;
-import dev.rubikon.commons.Serializable;
+import dev.rubikon.utils.Serializable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
 
