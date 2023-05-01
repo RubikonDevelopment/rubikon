@@ -9,6 +9,11 @@ import java.nio.ByteBuffer;
 import static org.lwjgl.nanovg.NanoVG.*;
 import static dev.rubikon.renderer.core.nanovg.NVContext.*;
 
+/**
+ * Used for storing fonts required by ingame renderer.
+ * @see #init()
+ * @see #load(String)
+ */
 public class TextRendererStore extends Store<String,Integer> {
 
     private final ByteBuffer SFUI_BOLD = load("assets/rubikon/fonts/SFUI-Bold.ttf");

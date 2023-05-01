@@ -2,7 +2,7 @@ package dev.rubikon.api.feature;
 
 import dev.rubikon.Rubikon;
 import dev.rubikon.api.commons.Toggleable;
-import dev.rubikon.api.settings.Setting;
+import dev.rubikon.api.settings.Option;
 import dev.rubikon.utils.ChatUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,8 @@ import net.minecraft.client.MinecraftClient;
 import java.util.ArrayList;
 
 /**
- * a object that can be toggled on/ off
+ * The base class for all features.
+ * All features have to extend this class.
  */
 public abstract class Feature implements Toggleable {
     @Getter
@@ -21,7 +22,7 @@ public abstract class Feature implements Toggleable {
     @Getter
     private final int keybind;
     @Getter
-    private ArrayList<Setting> settings = new ArrayList<>();
+    private ArrayList<Option> settings = new ArrayList<>();
     @Getter
     @Setter
     private boolean toggled = false;

@@ -3,7 +3,7 @@ package dev.rubikon.api.commons;
 import com.google.gson.JsonObject;
 
 /**
- * used for serializing client only features and saving them into jsons
+ * This interface is used to save and load data from the config(json) file.
  */
 public interface Serializable {
 

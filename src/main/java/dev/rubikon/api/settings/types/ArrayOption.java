@@ -1,11 +1,11 @@
 package dev.rubikon.api.settings.types;
 
-import dev.rubikon.api.settings.Setting;
+import dev.rubikon.api.settings.Option;
 
-public class ArraySetting extends Setting<String> {
+public class ArrayOption extends Option<String> {
     private final String[] values;
 
-    public ArraySetting(String name, String tooltip, String value, String[] values) {
+    public ArrayOption(String name, String tooltip, String value, String[] values) {
         super(name, tooltip, value);
         this.values = values;
     }
