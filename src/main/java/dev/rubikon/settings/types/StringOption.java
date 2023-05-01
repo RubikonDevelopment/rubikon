@@ -3,30 +3,28 @@ package dev.rubikon.settings.types;
 import dev.rubikon.settings.Option;
 import net.minecraft.nbt.NbtCompound;
 
-import java.awt.Color;
-
-public class ColorOption extends Option<Color> {
-    public ColorOption(String name, String description, Color defaultValue) {
+public class StringOption extends Option<String> {
+    public StringOption(String name, String description, String defaultValue) {
         super(name, description, defaultValue);
     }
 
     @Override
     protected NbtCompound save(NbtCompound nbt) {
-        nbt.putInt("value", get().getRGB());
+        nbt.putString("value", get());
 
-        return null;
+        return nbt;
     }
 
     @Override
-    protected Color load(NbtCompound nbt) {
+    protected String load(NbtCompound nbt) {
         if (nbt.contains("value"))
-            set(new Color(nbt.getInt("value")));
+            set(nbt.getString("value"));
 
         return get();
     }
 
     @Override
-    public boolean isValid(Color value) {
+    public boolean isValid(String value) {
         return true;
     }
 }
