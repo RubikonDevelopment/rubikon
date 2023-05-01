@@ -8,8 +8,15 @@ import dev.rubikon.features.Test;
 import lombok.extern.java.Log;
 
 
+/**
+ * Used for storing features.
+ * @see #init()
+ */
 public class FeatureStore extends Store<String, Feature> {
 
+    /**
+     * Add features to the store here.
+     */
     public void init() {
         add("test", new Test());
         add("sprint",new Sprint());
