@@ -1,7 +1,6 @@
 package dev.rubikon;
 
 import dev.rubikon.utils.Event;
-import dev.rubikon.listeners.FeatureListener;
 import dev.rubikon.renderer.core.Renderer;
 import dev.rubikon.things.Things;
 import io.github.nevalackin.radbus.PubSub;
@@ -18,7 +17,7 @@ import java.io.File;
  * The main class of the Rubikon mod.
  */
 public class Rubikon implements ModInitializer {
-	public static final String MOD_ID = "rubikon";
+	private static final String MOD_ID = "rubikon";
 
 	/**
 	 * Base logger for Rubikon.
@@ -35,7 +34,7 @@ public class Rubikon implements ModInitializer {
 
 	/**
 	 * Code that runs on Minecraft initialization.
-	 * It is not recommended to add anything here, use {@link FeatureListener} instead.
+	 * @see dev.rubikon.mixin.MinecraftClientMixin
 	 * @see ModInitializer#onInitialize()
 	 */
 	@Override
@@ -46,11 +45,6 @@ public class Rubikon implements ModInitializer {
 		}
 
 		new Renderer(); // Prepare the renderer
-
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Procgit eed with mild caution.
-		eventPubSub.subscribe(new FeatureListener());
 
 		Things.init();
 		Things.load();

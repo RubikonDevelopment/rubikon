@@ -1,16 +1,21 @@
 package dev.rubikon.things.features;
 
+import dev.rubikon.Rubikon;
+import dev.rubikon.events.KeyPressEvent;
 import dev.rubikon.utils.Store;
 import dev.rubikon.things.Thing;
 import dev.rubikon.things.Things;
 import dev.rubikon.things.features.misc.*;
 import lombok.Getter;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 
 import java.util.Collection;
 import java.util.HashMap;
+
+import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 
 public class Features extends Thing<Features> implements Store<String, Feature> {
     @Getter
@@ -25,6 +30,15 @@ public class Features extends Thing<Features> implements Store<String, Feature> 
         add(new Sprint());
         add(new Test());
         add(new Logo());
+
+        Rubikon.getEventPubSub().subscribe(KeyPressEvent.class, (event) -> {
+            if (event.action() != GLFW_PRESS) return;
+            if (MinecraftClient.getInstance().currentScreen != null) return;
+
+            for (Feature feature : Features.get().all()) {
+                if (feature.getKeybind() == event.key()) feature.toggle();
+            }
+        });
     }
 
     public static Features get() {
