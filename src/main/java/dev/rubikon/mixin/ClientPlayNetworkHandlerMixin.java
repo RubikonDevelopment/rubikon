@@ -1,6 +1,7 @@
 package dev.rubikon.mixin;
 
-import dev.rubikon.stores.Stores;
+import dev.rubikon.things.Things;
+import dev.rubikon.things.commands.Commands;
 import dev.rubikon.utils.ChatUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -21,7 +22,7 @@ public class ClientPlayNetworkHandlerMixin {
         if (!message.startsWith(".")) return;
 
         try {
-            Stores.COMMAND.dispatch(message.substring(1));
+            Commands.get().dispatch(message.substring(1));
         } catch (Exception e) {
             ChatUtils.sendMessage(Text.of("Commands"), e.getMessage());
         }

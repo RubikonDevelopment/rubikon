@@ -1,6 +1,7 @@
 package dev.rubikon.mixin;
 
-import dev.rubikon.stores.Stores;
+import dev.rubikon.things.Things;
+import dev.rubikon.things.commands.Commands;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Style;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,7 +24,7 @@ public class ScreenMixin {
         if (!value.startsWith(".")) return;
 
         try {
-            Stores.COMMAND.dispatch(value.substring(1));
+            Commands.get().dispatch(value.substring(1));
 
             cir.setReturnValue(true);
             cir.cancel();
