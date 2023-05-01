@@ -5,7 +5,6 @@ import dev.rubikon.events.ScreenRenderEvent;
 import dev.rubikon.renderer.core.nanovg.NVContext;
 import io.github.nevalackin.radbus.Listen;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.nanovg.NVGColor;
 
 import static dev.rubikon.renderer.core.nanovg.NVContext.nvgColor;
 import static org.lwjgl.nanovg.NanoVG.*;

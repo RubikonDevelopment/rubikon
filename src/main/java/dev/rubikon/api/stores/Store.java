@@ -1,4 +1,6 @@
-package dev.rubikon.api.commons;
+package dev.rubikon.api.stores;
+
+import lombok.Getter;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -7,6 +9,7 @@ import java.util.HashMap;
  * Store is a generic class that stores a key and a value.
  */
 public class Store<U, T> {
+    @Getter
     private final HashMap<U, T> store = new HashMap<>();
 
     public void add(U key, T value) {
@@ -27,9 +30,5 @@ public class Store<U, T> {
 
     public Collection<U> keys() {
         return store.keySet();
-    }
-
-    public HashMap<U, T> getRawRepository() {
-        return store;
     }
 }

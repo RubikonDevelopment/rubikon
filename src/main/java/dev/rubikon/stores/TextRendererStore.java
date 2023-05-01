@@ -1,6 +1,6 @@
 package dev.rubikon.stores;
 
-import dev.rubikon.api.commons.Store;
+import dev.rubikon.api.stores.Store;
 import dev.rubikon.utils.ResourceUtils;
 
 import java.io.IOException;
