@@ -58,9 +58,9 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
         NbtCompound nbt = new NbtCompound();
 
         nbt.putString("name", name);
-        //nbt.putInt("keybind", keybind);
-        //nbt.putBoolean("toggled", toggled);
-        //nbt.put("options", options.toNbtTag());
+        nbt.putInt("keybind", keybind);
+        nbt.putBoolean("toggled", toggled);
+        nbt.put("options", options.toNbtTag());
 
         return nbt;
     }

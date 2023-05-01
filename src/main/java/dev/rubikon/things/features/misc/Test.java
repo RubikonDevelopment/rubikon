@@ -43,7 +43,7 @@ public class Test extends Feature {
     public void onEnable() {
         Rubikon.LOGGER.info("on");
 
-        if(sayRandomWord.get()) {
+        if (sayRandomWord.get()) {
             Option<String> randomWord = randomWords.get().get((int) (Math.random() * randomWords.get().size()));
             ChatUtils.sendMessage(randomWord.get());
         }

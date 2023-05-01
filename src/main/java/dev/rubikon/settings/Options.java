@@ -14,7 +14,7 @@ import static dev.rubikon.utils.NbtUtils.listToTag;
 
 public class Options implements Serializable<Options>, Store<String, OptionGroup> {
     private OptionGroup defaultGroup;
-    private final Map<String, OptionGroup> groups = new HashMap<>(1);
+    private final Map<String, OptionGroup> groups = new HashMap<>();
 
     public OptionGroup defaultGroup() {
         if (defaultGroup == null) defaultGroup = create("General");
@@ -59,7 +59,7 @@ public class Options implements Serializable<Options>, Store<String, OptionGroup
 
         nbt.put("groups", listToTag(groups.values()));
 
-        return null;
+        return nbt;
     }
 
     @Override
@@ -73,6 +73,6 @@ public class Options implements Serializable<Options>, Store<String, OptionGroup
             optionGroup.fromNbtTag(compound);
         }
 
-        return null;
+        return this;
     }
 }
