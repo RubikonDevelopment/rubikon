@@ -20,7 +20,7 @@ public class OptionValueArgumentType implements ArgumentType<String> {
     public String parse(StringReader reader) throws CommandSyntaxException {
         String text = reader.readString();
         reader.setCursor(reader.getTotalLength());
-        return reader.readString();
+        return text;
     }
 
     @Override
