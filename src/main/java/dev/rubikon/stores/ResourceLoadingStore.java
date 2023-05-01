@@ -8,6 +8,11 @@ import static dev.rubikon.utils.ResourceUtils.*;
 import static org.lwjgl.nanovg.NanoVG.*;
 import static dev.rubikon.renderer.core.nanovg.NVContext.*;
 
+/**
+ * Used for storing resources required by ingame renderer.
+ * @see #init()
+ * @see dev.rubikon.utils.ResourceUtils#load(String)
+ */
 public class ResourceLoadingStore extends Store<String,Integer> {
 
     private final ByteBuffer SFUI_BOLD = load("assets/rubikon/fonts/SFUI-Bold.ttf");

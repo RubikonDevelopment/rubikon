@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 
 /**
- * Store is a generic class that stores a key and a value.
+ * Class used for storing simple key & value pairs.
+ * @param <U> Key type
+ * @param <T> Value type
  */
 public class Store<U, T> {
     private final HashMap<U, T> store = new HashMap<>();

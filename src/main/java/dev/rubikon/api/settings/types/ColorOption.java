@@ -1,11 +1,9 @@
 package dev.rubikon.api.settings.types;
 
-import dev.rubikon.api.settings.Setting;
-
 import java.awt.*;
 
-public class ColorSetting extends Setting<Color> {
-    public ColorSetting(String name, String tooltip, Color value) {
+public class ColorOption extends dev.rubikon.api.settings.Option<Color> {
+    public ColorOption(String name, String tooltip, Color value) {
         super(name, tooltip, value);
     }
 

@@ -29,6 +29,10 @@ public class NVContext {
         Rubikon.LOGGER.info("NanoVG was successfully initialized with opengl3 backend!");
     }
 
+    /**
+     * Draws elements on the screen.
+     * @param drawCall - the lambda that will be called to draw elements on the screen.
+     */
     public static void draw(Consumer<Long> drawCall) {
         //effective dimensions on hi-dpi devices.
         float contentscale = (float) mc.getWindow().getScaleFactor();
@@ -50,6 +54,10 @@ public class NVContext {
         return ctx;
     }
 
+    /**
+     * @param argb - color in ARGB format
+     * @return - NVGColor object of the argb color specified in parameter
+     */
     public static NVGColor nvgColor(int argb) {
         NVGColor color = NVGColor.create();
         nvgRGBA((byte) (argb >> 16 & 255), (byte) (argb >> 8 & 255), (byte) (argb >> 0 & 255), (byte) (argb >> 24 & 255), color);

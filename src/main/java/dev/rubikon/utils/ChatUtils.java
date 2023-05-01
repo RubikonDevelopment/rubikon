@@ -8,6 +8,9 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 
+/**
+ * Utility class for managing chat messages.
+ */
 @UtilityClass
 public class ChatUtils {
     private static final TextColor HIGHLIGHT_COLOR = TextColor.parse("#da2424");

@@ -7,7 +7,7 @@
 <h4 align="center">Source code for Rubikon, a fabric mod.</h4>
 
 <p align="center">
-    <a href="https://discord.gg/kFPKmEKeMS/" alt="Discord">
+    <a href="https://discord.com/invite/kFPKmEKeMS" alt="Discord">
         <img src="https://img.shields.io/discord/1046534628577640528?label=discord&style=for-the-badge&color=2fbfc4"/>
     </a>
 </p>
@@ -34,6 +34,7 @@ To contribute to this project, please follow the [standard Git workflow](https:/
 3. Commit your changes: `git commit -am "Add my feature"`
 4. Push the branch: `git push origin my-feature`
 5. Open a pull request
+6. (optional) Switch back to the `1.19` (main) branch: `git checkout 1.19`
 
 ## License
 
