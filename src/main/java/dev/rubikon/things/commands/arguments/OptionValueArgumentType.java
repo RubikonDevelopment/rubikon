@@ -25,31 +25,27 @@ public class OptionValueArgumentType implements ArgumentType<String> {
 
     @Override
     public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
-        return getArgumentType(context).listSuggestions(context, builder);
-    }
-
-    private ArgumentType<?> getArgumentType(CommandContext<?> context) {
         try {
             Option<?> option = OptionArgumentType.get(context);
-
             if (option instanceof BlockOption)
-                return StringArgumentType.string();
+                return StringArgumentType.string().listSuggestions(context, builder);
             else if (option instanceof BoolOption)
-                return BoolArgumentType.bool();
+                return BoolArgumentType.bool().listSuggestions(context, builder);
             else if (option instanceof ColorOption)
-                return StringArgumentType.string();
+                return StringArgumentType.string().listSuggestions(context, builder);
             else if (option instanceof DoubleOption)
-                return DoubleArgumentType.doubleArg();
+                return DoubleArgumentType.doubleArg().listSuggestions(context, builder);
             else if (option instanceof IntOption)
-                return IntegerArgumentType.integer(((IntOption) option).getMin(), ((IntOption) option).getMax());
+                return IntegerArgumentType.integer(((IntOption) option).getMin(), ((IntOption) option).getMax())
+                        .listSuggestions(context, builder);
             else if (option instanceof ItemOption)
-                return StringArgumentType.string();
+                return StringArgumentType.string().listSuggestions(context, builder);
             else if (option instanceof StringOption)
-                return StringArgumentType.string();
+                return StringArgumentType.string().listSuggestions(context, builder);
             else
-                return StringArgumentType.string();
+                return StringArgumentType.string().listSuggestions(context, builder);
         } catch (CommandSyntaxException e) {}
 
-        return StringArgumentType.string();
+        return StringArgumentType.string().listSuggestions(context, builder);
     }
 }
