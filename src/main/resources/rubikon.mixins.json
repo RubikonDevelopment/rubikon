@@ -8,7 +8,8 @@
   "client": [
     "MinecraftClientMixin",
     "GameRendererMixin",
-    "KeyboardMixin"
+    "KeyboardMixin",
+    "ClientConnectionMixin"
   ],
   "injectors": {
     "defaultRequire": 1
