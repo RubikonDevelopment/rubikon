@@ -31,8 +31,8 @@ public abstract class Thing<T> implements Serializable<T> {
         save(null);
     }
 
-    public void save(File subFolder) {
-        File file = subFolder == null ? this.file : new File(subFolder.getPath(), this.file.getName());
+    public void save(File folder) {
+        File file = folder == null ? this.file : new File(folder.getPath(), this.file.getName());
 
         try {
             NbtCompound nbt = toNbtTag();
@@ -48,8 +48,8 @@ public abstract class Thing<T> implements Serializable<T> {
         load(null);
     }
 
-    public void load(File subFolder) {
-        File file = subFolder == null ? this.file : new File(subFolder.getPath(), this.file.getName());
+    public void load(File folder) {
+        File file = folder == null ? this.file : new File(folder.getPath(), this.file.getName());
 
         try {
             fromNbtTag(NbtIo.read(file));
