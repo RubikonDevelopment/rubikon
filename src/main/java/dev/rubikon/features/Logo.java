@@ -40,19 +40,19 @@ public class Logo extends Feature {
             //alloc memory
             //TODO implement rasterizer
             try (MemoryStack stack = MemoryStack.stackPush()) {
-              //get default image size
-              IntBuffer pW = stack.mallocInt(1);
-              IntBuffer pH = stack.mallocInt(1);
-              //set it
-              nvgImageSize(ctx, imagehandle, pW, pH);
-              //clear paths
-              nvgBeginPath(ctx);
-              nvgRect(ctx, 2, 4, 25, 25);
-              NVGPaint logoPaint = NVGPaint.create();
-              //creates fbo as a image and binds it onto the paint
-              nvgImagePattern(ctx, 0.5f, 1, 30, 30, 0.f, imagehandle, 1.f, logoPaint);
-              nvgFillPaint(ctx, logoPaint);
-              nvgFill(ctx);
+                //get default image size
+                IntBuffer pW = stack.mallocInt(1);
+                IntBuffer pH = stack.mallocInt(1);
+                //set it
+                nvgImageSize(ctx, imagehandle, pW, pH);
+                //clear paths
+                nvgBeginPath(ctx);
+                nvgRect(ctx, 2, 4, 25, 25);
+                NVGPaint logoPaint = NVGPaint.create();
+                //creates fbo as a image and binds it onto the paint
+                nvgImagePattern(ctx, 0.5f, 1, 30, 30, 0.f, imagehandle, 1.f, logoPaint);
+                nvgFillPaint(ctx, logoPaint);
+                nvgFill(ctx);
             }
             nvgFontFace(ctx,"sfui-bold");
             nvgFontSize(ctx,24.f);
