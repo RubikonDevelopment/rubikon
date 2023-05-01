@@ -6,7 +6,7 @@ import dev.rubikon.api.settings.Setting;
 import dev.rubikon.utils.ChatUtils;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.text.Text;
+import net.minecraft.client.MinecraftClient;
 
 import java.util.ArrayList;
 
@@ -25,6 +25,8 @@ public abstract class Feature implements Toggleable {
     @Getter
     @Setter
     private boolean toggled = false;
+
+    public MinecraftClient mc = MinecraftClient.getInstance();
 
     public Feature(String name, String description, int keybind) {
         this.name = name;
