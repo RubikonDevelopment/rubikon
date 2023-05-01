@@ -2,6 +2,7 @@ package dev.rubikon.things.commands.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.rubikon.settings.Option;
+import dev.rubikon.settings.Options;
 import dev.rubikon.things.commands.Command;
 import dev.rubikon.things.commands.arguments.FeatureArgumentType;
 import dev.rubikon.things.commands.arguments.OptionArgumentType;

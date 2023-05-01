@@ -4,6 +4,7 @@ import dev.rubikon.Rubikon;
 import dev.rubikon.settings.Option;
 import dev.rubikon.settings.OptionGroup;
 import dev.rubikon.settings.types.BoolOption;
+import dev.rubikon.settings.types.IntOption;
 import dev.rubikon.settings.types.ListOption;
 import dev.rubikon.settings.types.StringOption;
 import dev.rubikon.things.features.Feature;
@@ -18,14 +19,23 @@ public class Test extends Feature {
     private final OptionGroup generalGroup = getOptions().defaultGroup();
 
     private final Option<Boolean> sayRandomWord = generalGroup.add(new BoolOption(
-            "Say Random Word",
+            "say-random-word",
             "Says random word when enabled",
             true
             )
     );
 
+    private final Option<Integer> randomWordDelay = generalGroup.add(new IntOption(
+            "random-word-delay",
+            "Delay between saying random words",
+            1000,
+            0,
+            10000
+            )
+    );
+
     private final Option<List<Option<String>>> randomWords = generalGroup.add(new ListOption<>(
-            "Random Words",
+            "random-words",
             "List of random words",
             new ArrayList<>() {{
                 add(new StringOption("test1", "Test1", "test1"));
@@ -47,6 +57,8 @@ public class Test extends Feature {
             Option<String> randomWord = randomWords.get().get((int) (Math.random() * randomWords.get().size()));
             ChatUtils.sendMessage(randomWord.get());
         }
+
+        ChatUtils.sendMessage("Random Word Delay: " + randomWordDelay.get());
     }
 
     @Override
