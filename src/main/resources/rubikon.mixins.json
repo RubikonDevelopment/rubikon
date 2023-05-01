@@ -7,9 +7,13 @@
   ],
   "client": [
     "ChatInputSuggestorMixin",
+    "ClientConnectionMixin",
+    "ClientLoginNetworkHandlerMixin",
+    "ClientPlayNetworkHandler",
     "ClientPlayNetworkHandlerMixin",
     "GameRendererMixin",
     "KeyboardMixin",
+    "ClientPlayerMixin",
     "MinecraftClientMixin",
     "ScreenMixin"
   ],
