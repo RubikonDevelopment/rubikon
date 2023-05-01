@@ -13,7 +13,7 @@
     "ClientPlayNetworkHandlerMixin",
     "GameRendererMixin",
     "KeyboardMixin",
-    "ClientPlayerMixin"
+    "ClientPlayerMixin",
     "MinecraftClientMixin",
     "ScreenMixin"
   ],
