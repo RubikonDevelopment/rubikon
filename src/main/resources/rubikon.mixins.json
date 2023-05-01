@@ -6,9 +6,10 @@
   "mixins": [
   ],
   "client": [
+    "ChatInputSuggestorMixin",
     "ClientConnectionMixin",
     "ClientLoginNetworkHandlerMixin",
-    "ChatInputSuggestorMixin",
+    "ClientPlayNetworkHandler",
     "ClientPlayNetworkHandlerMixin",
     "GameRendererMixin",
     "KeyboardMixin",
