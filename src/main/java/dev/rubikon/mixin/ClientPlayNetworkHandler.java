@@ -1,5 +1,7 @@
 package dev.rubikon.mixin;
 
+import dev.rubikon.Rubikon;
+import dev.rubikon.events.NetworkEvents;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -10,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ClientPlayNetworkHandler {
     @Inject(method = "onGameJoin", at = @At("RETURN"))
     public void onGameJoin(GameJoinS2CPacket packet, CallbackInfo ci) {
-
+        Rubikon.getEventPubSub().publish(new NetworkEvents.JoinGameEvent(packet));
     }
 }
