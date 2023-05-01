@@ -24,10 +24,6 @@ public class FeatureArgumentType implements ArgumentType<Feature> {
         return new FeatureArgumentType();
     }
 
-    public static Feature get(CommandContext<?> context) {
-        return context.getArgument("feature", Feature.class);
-    }
-
     @Override
     public Feature parse(StringReader reader) throws CommandSyntaxException {
         String name = reader.readString();
