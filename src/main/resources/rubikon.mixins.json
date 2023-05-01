@@ -8,6 +8,7 @@
   "client": [
     "ClientConnectionMixin",
     "ClientLoginNetworkHandlerMixin",
+    "ClientPlayNetworkHandler",
     "GameRendererMixin",
     "KeyboardMixin",
     "MinecraftClientMixin"
