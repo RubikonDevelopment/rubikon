@@ -26,7 +26,6 @@ public class Rubikon implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Procgit eed with mild caution.
-		Stores.init();
 		eventPubSub.subscribe(new FeatureListener());
 	}
 }

@@ -35,7 +35,7 @@ public class ResourceUtils {
      *
      * @throws IOException if an IO error occurs
      */
-    public static ByteBuffer ioResourceToByteBuffer(String resource, int bufferSize) throws IOException {
+    private static ByteBuffer ioResourceToByteBuffer(String resource, int bufferSize) throws IOException {
         ByteBuffer buffer;
 
         Path path = resource.startsWith("http") ? null : Paths.get(resource);
@@ -69,5 +69,19 @@ public class ResourceUtils {
 
         buffer.flip();
         return memSlice(buffer);
+    }
+    public static ByteBuffer load(String resource){
+        try {
+            return ResourceUtils.ioResourceToByteBuffer(resource, 150 * 1024);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load resource: " + resource, e);
+        }
+    }
+    public static ByteBuffer loadImage(String resource){
+        try {
+            return ResourceUtils.ioResourceToByteBuffer(resource, 32 * 1024);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load resource: " + resource, e);
+        }
     }
 }

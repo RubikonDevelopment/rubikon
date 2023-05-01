@@ -15,10 +15,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MinecraftClientMixin {
 	@Inject(at = @At("TAIL"), method = "<init>")
 	private void init(CallbackInfo info) {
-		//only for initializing rendering only things
+		//only for initializing
 		NVContext.initialize();
 		ImGuiContext.initialize();
-		Stores.initRenderer();
+		Stores.init();
 	}
 	@Inject(at = @At("TAIL"), method = "tick")
 	private void tick(CallbackInfo info) {
