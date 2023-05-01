@@ -8,6 +8,9 @@ import net.minecraft.client.MinecraftClient;
 
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 
+/**
+ * This class listens for key presses and toggles features accordingly.
+ */
 public class FeatureListener {
     @Listen
     public void onKeyPress(KeyPressEvent event) {
