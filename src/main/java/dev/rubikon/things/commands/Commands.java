@@ -29,6 +29,7 @@ public class Commands extends Thing<Commands> implements Store<String, Command> 
     public void init() {
         add(new TestCommand());
         add(new ToggleCommand());
+        add(new OptionsCommand());
     }
 
     public static Commands get() {

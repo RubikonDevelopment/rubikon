@@ -6,6 +6,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,9 +44,28 @@ public class Options implements Serializable<Options>, Store<String, OptionGroup
         return groups.get(name);
     }
 
+    public Option<?> findOption(String name) {
+        for (OptionGroup group : groups.values()) {
+            Option<?> option = group.find(name);
+            if (option != null) return option;
+        }
+
+        return null;
+    }
+
     @Override
     public Collection<String> names() {
         return groups.keySet();
+    }
+
+    public Collection<String> optionNames() {
+        Collection<String> names = new ArrayList<>();
+
+        for (OptionGroup group : groups.values()) {
+            names.addAll(group.names());
+        }
+
+        return names;
     }
 
     @Override
