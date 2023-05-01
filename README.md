@@ -34,6 +34,7 @@ To contribute to this project, please follow the [standard Git workflow](https:/
 3. Commit your changes: `git commit -am "Add my feature"`
 4. Push the branch: `git push origin my-feature`
 5. Open a pull request
+6. (optional) Switch back to the `1.19` (main) branch: `git checkout 1.19`
 
 ## License
 
