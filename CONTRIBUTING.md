@@ -110,3 +110,18 @@ The content of the commit message body should contain:
 
 -   information about the SHA of the commit being reverted in the following format: `This reverts commit <SHA>`,
 -   a clear description of the reason for reverting the commit message.
+
+## <a name="adding-new-things-to-the-codebase"></a> Adding new things to the codebase
+
+Before adding new things to the codebase, please consider the following:
+
+-   Is this something that is useful for everyone?
+-   There isn't already a PR for this?
+
+If the answer to both of these questions is yes, then please follow the steps below:
+
+1. Create a new branch from `main` with the name of the feature you are adding.
+2. Add your feature.
+3. Don't forget to add javadoc comments to your feature.
+4. Create a PR from your branch to `main`.
+5. Add a description of your feature and why you think it should be added.
