@@ -3,7 +3,7 @@ package dev.rubikon.mixin;
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.suggestion.Suggestions;
-import dev.rubikon.stores.CommandStore;
+import dev.rubikon.things.commands.Commands;
 import net.minecraft.client.gui.screen.ChatInputSuggestor;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.command.CommandSource;
@@ -40,11 +40,11 @@ public abstract class ChatInputSuggestorMixin {
         reader.setCursor(reader.getCursor() + 1);
 
         if (this.parse == null)
-            this.parse = CommandStore.DISPATCHER.parse(reader, CommandStore.COMMAND_SOURCE);
+            this.parse = Commands.DISPATCHER.parse(reader, Commands.COMMAND_SOURCE);
 
         int cursor = this.textField.getCursor();
         if (cursor >= 1 && (this.window == null || !this.completingSuggestions)) {
-            this.pendingSuggestions = CommandStore.DISPATCHER.getCompletionSuggestions(this.parse, cursor);
+            this.pendingSuggestions = Commands.DISPATCHER.getCompletionSuggestions(this.parse, cursor);
             this.pendingSuggestions.thenRun(() -> {
                 if (this.pendingSuggestions.isDone())
                     this.showCommandSuggestions();

@@ -19,7 +19,7 @@ public class ImGuiContext {
 
     public ImGuiContext() {}
 
-    public static void initialize() {
+    public static void init() {
         //creates imgui context
         ImGui.createContext();
         //binds imgui to minecraft window and gl context

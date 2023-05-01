@@ -19,7 +19,7 @@ public class NVContext {
     private static final MinecraftClient mc = MinecraftClient.getInstance();
     public NVContext() {}
 
-    public static void initialize() {
+    public static void init() {
         //create nanovg context for current thread with antialiasing
         ctx = nvgCreate(NVG_ANTIALIAS);
         if (ctx == NULL) {

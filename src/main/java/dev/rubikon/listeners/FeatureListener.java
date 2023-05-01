@@ -1,8 +1,9 @@
 package dev.rubikon.listeners;
 
-import dev.rubikon.api.feature.Feature;
+import dev.rubikon.things.Things;
+import dev.rubikon.things.features.Feature;
 import dev.rubikon.events.KeyPressEvent;
-import dev.rubikon.stores.Stores;
+import dev.rubikon.things.features.Features;
 import io.github.nevalackin.radbus.Listen;
 import net.minecraft.client.MinecraftClient;
 
@@ -17,7 +18,7 @@ public class FeatureListener {
         if (event.action() != GLFW_PRESS) return;
         if (MinecraftClient.getInstance().currentScreen != null) return;
 
-        for (Feature feature : Stores.FEATURE.values()) {
+        for (Feature feature : Features.get().all()) {
             if (feature.getKeybind() == event.key()) feature.toggle();
         }
     }
