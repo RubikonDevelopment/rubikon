@@ -14,11 +14,6 @@ import org.lwjgl.system.MemoryStack;
 
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
-import java.util.logging.Logger;
-
-import static dev.rubikon.renderer.core.nanovg.NVContext.getContext;
-import static dev.rubikon.renderer.core.nanovg.NVContext.nvgColor;
-import static dev.rubikon.utils.ResourceUtils.loadImage;
 import static org.lwjgl.nanovg.NanoVG.*;
 
 public class Logo extends Feature {
@@ -61,11 +56,17 @@ public class Logo extends Feature {
             }
             nvgFontFace(ctx,"sfui-bold");
             nvgFontSize(ctx,24.f);
-            NVGColor fillcolor = NVContext.nvgColor(-1);
+            NVGColor fillcolor = nvgColor(-1);
             nvgFillColor(ctx,fillcolor);
             //draw text
             nvgText(ctx,25,25,"Rubikon");
         });
+    }
+
+    public static NVGColor nvgColor(int argb) {
+        NVGColor color = NVGColor.create();
+        nvgRGBA((byte) (argb >> 16 & 255), (byte) (argb >> 8 & 255), (byte) (argb >> 0 & 255), (byte) (argb >> 24 & 255), color);
+        return color;
     }
 
     @Override

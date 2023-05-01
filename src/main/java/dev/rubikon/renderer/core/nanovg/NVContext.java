@@ -1,9 +1,11 @@
 package dev.rubikon.renderer.core.nanovg;
 
+import com.mojang.blaze3d.platform.GlConst;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.rubikon.Rubikon;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ChatScreen;
 import org.lwjgl.nanovg.NVGColor;
 
 import static org.lwjgl.nanovg.NanoVG.*;
@@ -39,30 +41,21 @@ public class NVContext {
         float width  = (int)(mc.getWindow().getFramebufferWidth() / contentscale);
         float height = (int)(mc.getWindow().getFramebufferHeight() / contentscale);
         //draw only while being ingame
-        if (mc.world == null || mc.currentScreen != null)
+        // TODO: what is causing this
+        if (mc.options.hudHidden || mc.world == null || mc.options.debugEnabled)
             return;
-        nvgBeginFrame(ctx, width, height, contentscale);
-        //passes the current context as argument
-        drawCall.accept(ctx);
-        //stop drawing
-        nvgEndFrame(ctx);
-        //restores default mc state
-        restoreState();
+            nvgBeginFrame(ctx, width, height, contentscale);
+            //passes the current context as argument
+            drawCall.accept(ctx);
+            //stop drawing
+            nvgEndFrame(ctx);
+            //restores default mc state
+            restoreState();
     }
-
     public static long getContext() {
         return ctx;
     }
 
-    /**
-     * @param argb - color in ARGB format
-     * @return - NVGColor object of the argb color specified in parameter
-     */
-    public static NVGColor nvgColor(int argb) {
-        NVGColor color = NVGColor.create();
-        nvgRGBA((byte) (argb >> 16 & 255), (byte) (argb >> 8 & 255), (byte) (argb >> 0 & 255), (byte) (argb >> 24 & 255), color);
-        return color;
-    }
 
     private static void restoreState() {
         GlStateManager._disableCull();
