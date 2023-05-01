@@ -5,12 +5,17 @@ import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import lombok.Getter;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandSource;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The base class for all commands.
+ * All commands have to extend this class.
+ */
 public abstract class Command {
     @Getter
     private final String name;
@@ -18,6 +23,8 @@ public abstract class Command {
     private final String description;
     @Getter
     private final List<String> aliases = new ArrayList<>();
+
+    protected MinecraftClient mc = MinecraftClient.getInstance();
 
     protected Command(String name, String description, String... aliases) {
         this.name = name;

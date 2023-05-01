@@ -30,7 +30,7 @@ public abstract class ChatInputSuggestorMixin {
 
     @Inject(
             method = "refresh",
-            at = @At(value = "INVOKE", target = "Lcom/mojang/brigadier/StringReader;canRead()Z"),
+            at = @At(value = "INVOKE", target = "Lcom/mojang/brigadier/StringReader;canRead()Z", remap = false),
             cancellable = true,
             locals = LocalCapture.CAPTURE_FAILHARD
     )

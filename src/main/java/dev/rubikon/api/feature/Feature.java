@@ -27,7 +27,7 @@ public abstract class Feature implements Toggleable {
     @Setter
     private boolean toggled = false;
 
-    public MinecraftClient mc = MinecraftClient.getInstance();
+    protected MinecraftClient mc = MinecraftClient.getInstance();
 
     public Feature(String name, String description, int keybind) {
         this.name = name;

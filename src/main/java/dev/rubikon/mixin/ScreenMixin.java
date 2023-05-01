@@ -10,7 +10,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Screen.class)
 public class ScreenMixin {
-    @Inject(method = "handleTextClick", at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", ordinal = 1), cancellable = true)
+    @Inject(
+            method = "handleTextClick",
+            at = @At(value = "INVOKE", target = "Lorg/slf4j/Logger;error(Ljava/lang/String;Ljava/lang/Object;)V", ordinal = 1, remap = false),
+            cancellable = true
+    )
     public void onHandleTextClick(Style style, CallbackInfoReturnable<Boolean> cir) {
         if (style.getClickEvent() == null) return;
 

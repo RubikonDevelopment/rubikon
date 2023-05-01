@@ -3,9 +3,10 @@ package dev.rubikon.stores;
 import lombok.experimental.UtilityClass;
 
 /**
- * Used for storing {@link FeatureStore features} & {@link ResourceLoadingStore resources used for rendering}.
+ * Used for storing and initializing stores.
  * @see FeatureStore
  * @see ResourceLoadingStore
+ * @see CommandStore
  */
 @UtilityClass
 public class Stores {
