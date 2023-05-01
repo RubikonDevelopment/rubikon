@@ -11,10 +11,12 @@ import lombok.experimental.UtilityClass;
 public class Stores {
     public static FeatureStore FEATURE = new FeatureStore();
     public static ResourceLoadingStore RESOURCE = new ResourceLoadingStore();
+    public static CommandStore COMMAND = new CommandStore();
 
 
     public static void init() {
         RESOURCE.init();
         FEATURE.init();
+        COMMAND.init();
     }
 }
