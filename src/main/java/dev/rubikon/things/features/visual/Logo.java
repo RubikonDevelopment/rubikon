@@ -1,9 +1,10 @@
-package dev.rubikon.things.features.misc;
+package dev.rubikon.things.features.visual;
 
 import dev.rubikon.events.ScreenRenderEvent;
 import dev.rubikon.renderer.core.Renderer;
 import dev.rubikon.renderer.core.nanovg.NVContext;
 import dev.rubikon.things.features.Feature;
+import dev.rubikon.things.features.FeatureCategory;
 import io.github.nevalackin.radbus.Listen;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.nanovg.NVGColor;
@@ -15,7 +16,7 @@ import static org.lwjgl.nanovg.NanoVG.*;
 
 public class Logo extends Feature {
     public Logo() {
-        super("Logo","Lets you toggle rendering of the client logo", GLFW.GLFW_KEY_L);
+        super("Logo","Lets you toggle rendering of the client logo", GLFW.GLFW_KEY_L, FeatureCategory.VISUAL);
     }
 
     @Override
@@ -26,7 +27,7 @@ public class Logo extends Feature {
     @Listen
     public void onRender(ScreenRenderEvent event) {
         int image = Renderer.getInstance().find("rubikon-icon");
-
+        // TODO shader for text
         //render the text
         NVContext.draw(ctx -> {
             //alloc memory

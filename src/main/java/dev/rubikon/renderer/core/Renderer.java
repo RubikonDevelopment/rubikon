@@ -1,5 +1,6 @@
 package dev.rubikon.renderer.core;
 
+import dev.rubikon.renderer.shader.Shader;
 import dev.rubikon.utils.Store;
 import dev.rubikon.renderer.core.imgui.ImGuiContext;
 import dev.rubikon.renderer.core.nanovg.NVContext;
@@ -21,6 +22,8 @@ public class Renderer implements Store<String, Integer> {
     private final ByteBuffer RUBIKON_ICON = loadImage("assets/rubikon/icon.png");
     private final HashMap<String, Integer> renderers = new HashMap<>();
 
+    private Shader shader;
+
     public Renderer() {
         instance = this;
     }
@@ -31,6 +34,7 @@ public class Renderer implements Store<String, Integer> {
 
         add("sfui-bold", nvgCreateFontMem(getContext(),"sfui-bold", SFUI_BOLD, false));
         add("rubikon-icon", nvgCreateImageMem(getContext(), NVG_IMAGE_GENERATE_MIPMAPS, RUBIKON_ICON));
+        shader = new Shader("logoshader.frag","vertex.vert");
     }
 
     @Override
