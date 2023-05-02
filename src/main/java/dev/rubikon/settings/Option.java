@@ -1,14 +1,21 @@
 package dev.rubikon.settings;
 
+import com.google.common.collect.ImmutableList;
 import dev.rubikon.utils.Serializable;
 import lombok.Getter;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * Represents an options that can be changed by the user.
  * @param <T> The type of the option's value.
  */
 public abstract class Option<T> implements Serializable<T> {
+    private static final List<String> COMMAND_SUGGESTIONS = ImmutableList.of();
+
     @Getter
     private final String name, description;
 
@@ -36,6 +43,20 @@ public abstract class Option<T> implements Serializable<T> {
     protected abstract NbtCompound save(NbtCompound nbt);
     protected abstract T load(NbtCompound nbt);
     public abstract boolean isValid(T value);
+
+    public abstract boolean parse(String value);
+    protected boolean parse(Object value) {
+        return value != null && set((T) value);
+    }
+
+    public List<String> commandSuggestions() {
+        return COMMAND_SUGGESTIONS;
+    }
+
+    @Nullable
+    public Iterable<Identifier> commandIdentifierSuggestions() {
+        return null;
+    }
 
     @Override
     public NbtCompound toNbtTag() {

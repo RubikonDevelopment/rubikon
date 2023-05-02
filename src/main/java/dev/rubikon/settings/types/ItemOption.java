@@ -1,9 +1,11 @@
 package dev.rubikon.settings.types;
 
 import dev.rubikon.settings.Option;
+import dev.rubikon.utils.RegistriesUtils;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 
 import java.util.function.Predicate;
 
@@ -18,6 +20,16 @@ public class ItemOption extends Option<Item> {
         super(name, description, defaultValue);
 
         this.validator = validator;
+    }
+
+    @Override
+    public boolean parse(String value) {
+        return super.parse(RegistriesUtils.findByString(Registries.ITEM, value));
+    }
+
+    @Override
+    public Iterable<Identifier> commandIdentifierSuggestions() {
+        return Registries.ITEM.getIds();
     }
 
     @Override

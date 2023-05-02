@@ -1,12 +1,16 @@
 package dev.rubikon.settings.types;
 
+import com.google.common.collect.ImmutableList;
+import dev.rubikon.Rubikon;
 import dev.rubikon.settings.Option;
 import net.minecraft.nbt.NbtCompound;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class ColorOption extends Option<Color> {
+    private static final List<String> COMMAND_SUGGESTIONS = ImmutableList.of("#FFFFFF", Rubikon.PRIMARY_COLOR);
     private final Predicate<Color> validator;
 
     public ColorOption(String name, String description, Color defaultValue) {
@@ -17,6 +21,20 @@ public class ColorOption extends Option<Color> {
         super(name, description, defaultValue);
 
         this.validator = validator;
+    }
+
+    @Override
+    public boolean parse(String value) {
+        try {
+            return super.parse(Color.decode(value.trim()));
+        } catch (NumberFormatException e) {
+            return super.parse((Object) null);
+        }
+    }
+
+    @Override
+    public List<String> commandSuggestions() {
+        return COMMAND_SUGGESTIONS;
     }
 
     @Override

@@ -16,6 +16,15 @@ public class IntOption extends Option<Integer> {
     }
 
     @Override
+    public boolean parse(String value) {
+        try {
+            return super.parse(Integer.parseInt(value.trim()));
+        } catch (NumberFormatException e) {
+            return super.parse((Object) null);
+        }
+    }
+
+    @Override
     protected NbtCompound save(NbtCompound nbt) {
         nbt.putInt("value", get());
 

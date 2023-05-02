@@ -16,6 +16,15 @@ public class DoubleOption extends Option<Double> {
     }
 
     @Override
+    public boolean parse(String value) {
+        try {
+            return super.parse(Double.parseDouble(value.trim()));
+        } catch (NumberFormatException e) {
+            return super.parse((Object) null);
+        }
+    }
+
+    @Override
     protected NbtCompound save(NbtCompound nbt) {
         nbt.putDouble("value", get());
 

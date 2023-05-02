@@ -15,6 +15,26 @@ public class ListOption<T> extends Option<List<Option<T>>> {
     }
 
     @Override
+    public boolean parse(String value) {
+        String[] values = value.trim().split(" ");
+        List<Option<T>> options = new ArrayList<>();
+
+        for (String val : values) {
+            Option<T> option = getDefaultValue().stream().filter(o -> o.getDefaultValue().equals(val)).findFirst().orElse(null);
+
+            if (option != null)
+                options.add(option);
+        }
+
+        return options.size() == 0 ? super.parse((Object) null) : super.parse(options);
+    }
+
+    @Override
+    public List<String> commandSuggestions() {
+        return getDefaultValue().stream().map(o -> o.getDefaultValue().toString()).toList();
+    }
+
+    @Override
     protected NbtCompound save(NbtCompound nbt) {
         nbt.put("value", NbtUtils.listToTag(get()));
 
@@ -30,7 +50,7 @@ public class ListOption<T> extends Option<List<Option<T>>> {
             for (NbtElement element : list) {
                 NbtCompound compound = (NbtCompound) element;
                 String name = compound.getString("name");
-                Option<T> option = getDefaultValue().stream().findFirst().filter(o -> o.getName().equals(name)).orElse(null);
+                Option<T> option = getDefaultValue().stream().filter(o -> o.getName().equals(name)).findFirst().orElse(null);
 
                 if (option != null)
                     value.add(option);

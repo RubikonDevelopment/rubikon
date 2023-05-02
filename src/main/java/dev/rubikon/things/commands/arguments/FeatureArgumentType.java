@@ -7,7 +7,6 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
-import dev.rubikon.things.Things;
 import dev.rubikon.things.features.Feature;
 import dev.rubikon.things.features.Features;
 import net.minecraft.command.CommandSource;

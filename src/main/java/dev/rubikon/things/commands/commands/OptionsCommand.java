@@ -2,7 +2,7 @@ package dev.rubikon.things.commands.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.rubikon.settings.Option;
-import dev.rubikon.settings.Options;
+import dev.rubikon.settings.types.ListOption;
 import dev.rubikon.things.commands.Command;
 import dev.rubikon.things.commands.arguments.FeatureArgumentType;
 import dev.rubikon.things.commands.arguments.OptionArgumentType;
@@ -11,6 +11,8 @@ import dev.rubikon.things.features.Feature;
 import dev.rubikon.utils.ChatUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.text.Text;
+
+import java.util.stream.Collectors;
 
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
@@ -45,13 +47,18 @@ public class OptionsCommand extends Command {
                                       Option<?> option = OptionArgumentType.get(context);
                                       String value = context.getArgument("value", String.class);
 
-                                      // TODO: set option value using `parse` method
+                                      option.parse(value);
+
+                                      String result = option instanceof ListOption
+                                              ? ((ListOption<?>) option).get().stream().map(o -> o.get().toString())
+                                                .collect(Collectors.joining(", "))
+                                              : option.get().toString();
 
                                       ChatUtils.sendMessage(
                                               Text.of(feature.getName()),
                                               "Option <highlight>%s<white> set to <highlight>%s<white>.",
                                               option.getName(),
-                                              value
+                                             result
                                       );
 
                                       return SINGLE_SUCCESS;

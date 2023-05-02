@@ -19,6 +19,11 @@ public class StringOption extends Option<String> {
     }
 
     @Override
+    public boolean parse(String value) {
+        return super.parse((Object) value.trim());
+    }
+
+    @Override
     protected NbtCompound save(NbtCompound nbt) {
         nbt.putString("value", get());
 
