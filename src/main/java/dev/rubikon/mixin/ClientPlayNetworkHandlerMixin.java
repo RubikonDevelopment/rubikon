@@ -2,10 +2,13 @@ package dev.rubikon.mixin;
 
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import dev.rubikon.Rubikon;
+import dev.rubikon.events.NetworkEvents;
 import dev.rubikon.things.commands.Commands;
 import dev.rubikon.utils.ChatUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
+import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.MutableText;
@@ -21,6 +24,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ClientPlayNetworkHandler.class)
 public class ClientPlayNetworkHandlerMixin {
     @Shadow @Final private MinecraftClient client;
+
+    @Inject(method = "onGameJoin", at = @At("RETURN"))
+    public void onGameJoin(GameJoinS2CPacket packet, CallbackInfo ci) {
+        Rubikon.getEventPubSub().publish(new NetworkEvents.JoinGameEvent(packet));
+    }
 
     @Inject(method = "sendChatMessage", at = @At("HEAD"), cancellable = true)
     private void onSendChatMessage(String message, CallbackInfo ci) {
@@ -38,7 +46,8 @@ public class ClientPlayNetworkHandlerMixin {
     }
 
     private MutableText getMessageAsText(String command, CommandSyntaxException exception) {
-        MutableText message = (MutableText) exception.getRawMessage();
+        MutableText message = Text.literal("");
+        message.append((MutableText) exception.getRawMessage());
 
         if (exception.getInput() != null && exception.getCursor() >= 0) {
             message.append("\n");
@@ -49,14 +58,9 @@ public class ClientPlayNetworkHandlerMixin {
     }
 
     /**
-     * Grabbed
-     * @see net.minecraft.server.command.CommandManager#execute(ParseResults, String) 
+     * From {@link net.minecraft.server.command.CommandManager#execute(ParseResults, String)}
      */
     private MutableText cursorMessage(String command, CommandSyntaxException exception) {
-        System.out.println(exception);
-        System.out.println(exception.getContext());
-        System.out.println(exception.getInput());
-        // TODO: fix duplication
         int i = Math.min(exception.getInput().length(), exception.getCursor());
         MutableText mutableText = Text.empty().styled(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "." + command)));
         if (i > 10) {
