@@ -36,7 +36,7 @@ public class OptionValueArgumentType implements ArgumentType<String> {
         try {
             option = OptionArgumentType.get(context);
         } catch (CommandSyntaxException e) {
-            return null;
+            return Suggestions.empty();
         }
 
         Iterable<Identifier> identifierSuggestions = option.commandIdentifierSuggestions();
