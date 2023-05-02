@@ -26,7 +26,7 @@ public class StringListOption extends Option<List<String>> implements ListOption
     }
 
     public StringListOption(String name, String description, List<String> defaultValue, Predicate<List<String>> validator) {
-        super(name, description, ListUtils.toImmutableList(defaultValue), defaultValue);
+        super(name, description, defaultValue, ListUtils.toImmutableList(defaultValue));
         //                            ^ clone defaultValue to prevent modification
 
         this.validator = validator;
