@@ -1,6 +1,5 @@
 package dev.rubikon.settings.types;
 
-import com.google.common.collect.ImmutableList;
 import dev.rubikon.settings.ListOption;
 import dev.rubikon.settings.Option;
 import dev.rubikon.utils.ListUtils;
@@ -27,9 +26,9 @@ public class StringListOption extends Option<List<String>> implements ListOption
     }
 
     public StringListOption(String name, String description, List<String> defaultValue, Predicate<List<String>> validator) {
-        super(name, description, ListUtils.toImmutableList(defaultValue)); // duplicate defaultValue to prevent modification
+        super(name, description, ListUtils.toImmutableList(defaultValue), defaultValue);
+        //                            ^ clone defaultValue to prevent modification
 
-        set(defaultValue); // want a mutable list
         this.validator = validator;
     }
 

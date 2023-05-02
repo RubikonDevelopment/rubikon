@@ -25,9 +25,13 @@ public abstract class Option<T> implements Serializable<T> {
     private T value;
 
     public Option(String name, String description, T defaultValue) {
+        this(name, description, defaultValue, defaultValue);
+    }
+
+    public Option(String name, String description, T value, T defaultValue) {
         this.name = name;
         this.description = description;
-        this.value = defaultValue; // is replaced later with load()
+        this.value = value; // is replaced later with load()
         this.defaultValue = defaultValue;
     }
 
