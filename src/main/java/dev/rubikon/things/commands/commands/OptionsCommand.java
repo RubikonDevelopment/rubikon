@@ -2,13 +2,13 @@ package dev.rubikon.things.commands.commands;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.rubikon.settings.Option;
-import dev.rubikon.settings.types.ListOption;
 import dev.rubikon.things.commands.Command;
 import dev.rubikon.things.commands.arguments.FeatureArgumentType;
 import dev.rubikon.things.commands.arguments.OptionArgumentType;
 import dev.rubikon.things.commands.arguments.OptionValueArgumentType;
 import dev.rubikon.things.features.Feature;
 import dev.rubikon.utils.ChatUtils;
+import dev.rubikon.utils.OptionsUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.text.Text;
 
@@ -49,9 +49,8 @@ public class OptionsCommand extends Command {
 
                                       option.parse(value);
 
-                                      String result = option instanceof ListOption
-                                              ? ((ListOption<?>) option).get().stream().map(o -> o.get().toString())
-                                                .collect(Collectors.joining(", "))
+                                      String result = OptionsUtils.isList(option)
+                                              ? OptionsUtils.listToString(option)
                                               : option.get().toString();
 
                                       ChatUtils.sendMessage(

@@ -5,8 +5,7 @@ import dev.rubikon.settings.Option;
 import dev.rubikon.settings.OptionGroup;
 import dev.rubikon.settings.types.BoolOption;
 import dev.rubikon.settings.types.IntOption;
-import dev.rubikon.settings.types.ListOption;
-import dev.rubikon.settings.types.StringOption;
+import dev.rubikon.settings.types.StringListOption;
 import dev.rubikon.things.features.Feature;
 import dev.rubikon.utils.ChatUtils;
 
@@ -34,13 +33,13 @@ public class Test extends Feature {
             )
     );
 
-    private final Option<List<Option<String>>> randomWords = generalGroup.add(new ListOption<>(
+    private final Option<List<String>> randomWords = generalGroup.add(new StringListOption(
             "random-words",
             "List of random words",
             new ArrayList<>() {{
-                add(new StringOption("test1", "Test1", "test1"));
-                add(new StringOption("test2", "Test2", "test2"));
-                add(new StringOption("test3", "Test3", "test3"));
+                add("test1");
+                add("test2");
+                add("test3");
             }}
             )
     );
@@ -54,8 +53,8 @@ public class Test extends Feature {
         Rubikon.LOGGER.info("on");
 
         if (sayRandomWord.get()) {
-            Option<String> randomWord = randomWords.get().get((int) (Math.random() * randomWords.get().size()));
-            ChatUtils.sendMessage(randomWord.get());
+            String randomWord = randomWords.get().get((int) (Math.random() * randomWords.get().size()));
+            ChatUtils.sendMessage(randomWord);
         }
 
         ChatUtils.sendMessage("Random Word Delay: " + randomWordDelay.get());
