@@ -19,9 +19,24 @@ public class Shader {
     public Shader(String fragmentName,String vertexName) {
         //create program
         this.program = glCreateProgram();
+        // TODO @KOBLIZEK PICO NEBO HYRO UDELEJTE ZE SE TO LOADUJE Z FILU ME Z TOHO MRDNE
         //attach vertex and fragment shaders onto a program
         glAttachShader(this.program, createShader(fragmentName, GL_FRAGMENT_SHADER));
         glAttachShader(this.program, createShader(vertexName, GL_VERTEX_SHADER));
+        //link to a program
+        glLinkProgram(this.program);
+    }
+
+    public Shader(String fragmentName) {
+        //create program
+        this.program = glCreateProgram();
+        //attach vertex and fragment shaders onto a program
+        glAttachShader(this.program, createShader(fragmentName, GL_FRAGMENT_SHADER));
+        glAttachShader(this.program, createShader("#version 130\n" +
+                "\n" +
+                "void main() {\n" +
+                "    gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;\n" +
+                "}", GL_VERTEX_SHADER));
         //link to a program
         glLinkProgram(this.program);
     }
@@ -35,8 +50,15 @@ public class Shader {
     }
 
     public void uniform1i(String name,int i) {
-        glGetUniformi(glGetUniformLocation(program,name),i);
+        glUniform1i(glGetUniformLocation(program,name),i);
     }
+    public void uniform2f(String name,float i,float i2) {
+        glUniform2f(glGetUniformLocation(program,name),i,i2);
+    }
+    public void uniform1f(String name,float i) {
+        glUniform1f(glGetUniformLocation(program,name),i);
+    }
+
 
 
     public int getProgram() {

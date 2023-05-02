@@ -2,7 +2,7 @@
 
 uniform vec2 resolution;
 uniform float time;
-uniform vec3 color;
+//uniform vec3 color;
 
 const float Pi = 3.14159;
 
@@ -23,6 +23,6 @@ void main()
 
     // Change the mix ratio to increase the marble feel and change the white color to a light blue color
     float mix_ratio = 0.4 * sin(3.0 * p.x) + 0.6;
-    vec3 col = mix(color, vec3(0.6, 0.9, 1.0), mix_ratio);
+    vec3 col = mix(vec3(0.1, 0.0, 0.5), vec3(0.6, 0.9, 1.0), mix_ratio);
     gl_FragColor = vec4(col, 1.0);
 }
