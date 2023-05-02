@@ -9,6 +9,11 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Predicate;
 
+/**
+ * Represents an item option.
+ * @see Option
+ * @see Item
+ */
 public class ItemOption extends Option<Item> {
     private final Predicate<Item> validator;
 

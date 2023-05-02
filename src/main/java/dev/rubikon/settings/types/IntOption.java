@@ -4,6 +4,11 @@ import dev.rubikon.settings.Option;
 import lombok.Getter;
 import net.minecraft.nbt.NbtCompound;
 
+/**
+ * Represents an integer option.
+ * @see Option
+ * @see Integer
+ */
 public class IntOption extends Option<Integer> {
     @Getter
     private final int min, max;

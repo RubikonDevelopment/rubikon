@@ -9,6 +9,11 @@ import java.awt.Color;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Represents a color option.
+ * @see Option
+ * @see Color
+ */
 public class ColorOption extends Option<Color> {
     private static final List<String> COMMAND_SUGGESTIONS = ImmutableList.of("#FFFFFF", Rubikon.PRIMARY_COLOR);
     private final Predicate<Color> validator;

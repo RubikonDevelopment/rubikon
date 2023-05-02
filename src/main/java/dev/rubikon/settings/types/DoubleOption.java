@@ -4,6 +4,11 @@ import dev.rubikon.settings.Option;
 import lombok.Getter;
 import net.minecraft.nbt.NbtCompound;
 
+/**
+ * Represents a double option.
+ * @see Option
+ * @see Double
+ */
 public class DoubleOption extends Option<Double> {
     @Getter
     private final double min, max;

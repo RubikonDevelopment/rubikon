@@ -9,6 +9,11 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Predicate;
 
+/**
+ * Represents a block option.
+ * @see Option
+ * @see Block
+ */
 public class BlockOption extends Option<Block> {
     private final Predicate<Block> validator;
 

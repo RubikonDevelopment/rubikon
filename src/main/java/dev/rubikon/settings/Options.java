@@ -13,6 +13,10 @@ import java.util.Map;
 
 import static dev.rubikon.utils.NbtUtils.listToTag;
 
+/**
+ * Represents a group of option groups.
+ * @see OptionGroup
+ */
 public class Options implements Serializable<Options>, Store<String, OptionGroup> {
     private OptionGroup defaultGroup;
     private final Map<String, OptionGroup> groups = new HashMap<>();

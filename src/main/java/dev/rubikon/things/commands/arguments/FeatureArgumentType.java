@@ -15,6 +15,14 @@ import net.minecraft.command.CommandSource;
 import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Represents a Brigadier argument type for {@link Feature} objects.
+ * <p>
+ *     This class is used to parse a {@link Feature} from a command argument.
+ *     It is also used to provide tab completion for feature names.
+ * </p>
+ * @see Feature
+ */
 public class FeatureArgumentType implements ArgumentType<Feature> {
     private static final DynamicCommandExceptionType NO_SUCH_FEATURE = new DynamicCommandExceptionType(name -> ChatUtils.format("Unable to find feature <highlight>%s<white>.", name));
 

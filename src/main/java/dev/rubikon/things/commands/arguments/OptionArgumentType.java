@@ -14,6 +14,14 @@ import net.minecraft.command.CommandSource;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Represents a Brigadier argument type for {@link Option} objects.
+ * <p>
+ *     This class is used to parse a {@link Option} from a command argument.
+ *     It is also used to provide tab completion for option names.
+ * </p>
+ * @see Option
+ */
 public class OptionArgumentType implements ArgumentType<String> {
     private static final DynamicCommandExceptionType NO_SUCH_OPTION = new DynamicCommandExceptionType(name -> ChatUtils.format("Unable to find option <highlight>%s<white>.", name));
 

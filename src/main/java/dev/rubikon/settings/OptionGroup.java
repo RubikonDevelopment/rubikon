@@ -10,6 +10,10 @@ import net.minecraft.nbt.NbtList;
 
 import java.util.*;
 
+/**
+ * Represents a group of options.
+ * @see Option
+ */
 public class OptionGroup implements Serializable, Store<String, Option> {
     @Getter
     private final String name;
@@ -25,6 +29,14 @@ public class OptionGroup implements Serializable, Store<String, Option> {
         this.expanded = expanded;
     }
 
+    /**
+     * Adds an option to the group.
+     * <p>
+     *     This method is used to add an option to the group.
+     * </p>
+     * @param option The option to add.
+     * @return The added option.
+     */
     public <T> Option<T> add(Option<T> option) {
         options.put(option.getName(), option);
 

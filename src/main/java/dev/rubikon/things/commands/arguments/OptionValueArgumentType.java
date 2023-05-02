@@ -13,14 +13,25 @@ import net.minecraft.util.Identifier;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Represents a Brigadier argument type for {@link Option} value.
+ * <p>
+ *     This class is used to parse a {@link Option} value from a command argument.
+ *     It is also used to provide tab completion for option values.
+ * </p>
+ * @see Option
+ * @see OptionArgumentType
+ */
 public class OptionValueArgumentType implements ArgumentType<String> {
     public static OptionValueArgumentType create() {
         return new OptionValueArgumentType();
     }
 
     /**
-     * @see StringArgumentType#greedyString()
+     * Parses the argument from the given {@link StringReader}.
+     * From {@link StringArgumentType#parse(StringReader)}
      * @see StringArgumentType#parse(StringReader)
+     * @see StringArgumentType#greedyString()
      */
     @Override
     public String parse(StringReader reader) throws CommandSyntaxException {

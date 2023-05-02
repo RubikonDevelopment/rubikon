@@ -5,6 +5,11 @@ import net.minecraft.nbt.NbtCompound;
 
 import java.util.function.Predicate;
 
+/**
+ * Represents a string option.
+ * @see Option
+ * @see String
+ */
 public class StringOption extends Option<String> {
     private final Predicate<String> validator;
 

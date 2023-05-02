@@ -7,6 +7,11 @@ import net.minecraft.nbt.NbtCompound;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Represents a boolean option.
+ * @see Option
+ * @see Boolean
+ */
 public class BoolOption extends Option<Boolean> {
     private static final List<String> COMMAND_SUGGESTIONS = ImmutableList.of("true", "false", "toggle");
     private final Predicate<Boolean> validator;

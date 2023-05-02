@@ -14,6 +14,12 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+/**
+ * Represents a list of strings option.
+ * @see Option
+ * @see ListOption
+ * @see StringOption
+ */
 public class StringListOption extends Option<List<String>> implements ListOption<String> {
     private final Predicate<List<String>> validator;
 
