@@ -9,13 +9,14 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import dev.rubikon.settings.Option;
 import dev.rubikon.things.features.Feature;
+import dev.rubikon.utils.ChatUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.text.Text;
 
 import java.util.concurrent.CompletableFuture;
 
 public class OptionArgumentType implements ArgumentType<String> {
-    private static final DynamicCommandExceptionType NO_SUCH_OPTION = new DynamicCommandExceptionType(name -> Text.literal("Unable to find option " + name));
+    private static final DynamicCommandExceptionType NO_SUCH_OPTION = new DynamicCommandExceptionType(name -> ChatUtils.format("Unable to find option <highlight>%s<white>."));
 
     public static OptionArgumentType create() {
         return new OptionArgumentType();

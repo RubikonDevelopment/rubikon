@@ -58,7 +58,7 @@ public class ChatUtils {
         return message;
     }
 
-    private static MutableText format(String input, Object... args) {
+    public static MutableText format(String input, Object... args) {
         input = String.format(input, args);
 
         MutableText output = Text.literal("");
