@@ -2,7 +2,6 @@ package dev.rubikon.things.features;
 
 import dev.rubikon.Rubikon;
 import dev.rubikon.events.KeyPressEvent;
-import dev.rubikon.things.features.misc.Logo;
 import dev.rubikon.utils.Store;
 import dev.rubikon.things.Thing;
 import dev.rubikon.things.Things;
