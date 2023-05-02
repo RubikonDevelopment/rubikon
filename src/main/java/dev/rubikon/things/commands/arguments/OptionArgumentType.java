@@ -16,7 +16,7 @@ import net.minecraft.text.Text;
 import java.util.concurrent.CompletableFuture;
 
 public class OptionArgumentType implements ArgumentType<String> {
-    private static final DynamicCommandExceptionType NO_SUCH_OPTION = new DynamicCommandExceptionType(name -> ChatUtils.format("Unable to find option <highlight>%s<white>."));
+    private static final DynamicCommandExceptionType NO_SUCH_OPTION = new DynamicCommandExceptionType(name -> ChatUtils.format("Unable to find option <highlight>%s<white>.", name));
 
     public static OptionArgumentType create() {
         return new OptionArgumentType();

@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 
 public class FeatureArgumentType implements ArgumentType<Feature> {
-    private static final DynamicCommandExceptionType NO_SUCH_FEATURE = new DynamicCommandExceptionType(name -> ChatUtils.format("Unable to find feature <highlight>%s<white>."));
+    private static final DynamicCommandExceptionType NO_SUCH_FEATURE = new DynamicCommandExceptionType(name -> ChatUtils.format("Unable to find feature <highlight>%s<white>.", name));
 
     private static final Collection<String> EXAMPLES = Features.get().names().stream().limit(3).toList();
 
