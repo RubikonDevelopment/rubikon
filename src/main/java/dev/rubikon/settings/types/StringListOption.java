@@ -1,12 +1,15 @@
 package dev.rubikon.settings.types;
 
+import com.google.common.collect.ImmutableList;
 import dev.rubikon.settings.ListOption;
 import dev.rubikon.settings.Option;
+import dev.rubikon.utils.ListUtils;
 import dev.rubikon.utils.NbtUtils;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
@@ -15,13 +18,18 @@ import java.util.stream.Stream;
 public class StringListOption extends Option<List<String>> implements ListOption<String> {
     private final Predicate<List<String>> validator;
 
+    public StringListOption(String name, String description) {
+        this(name, description, new ArrayList<>(0));
+    }
+
     public StringListOption(String name, String description, List<String> defaultValue) {
         this(name, description, defaultValue, null);
     }
 
     public StringListOption(String name, String description, List<String> defaultValue, Predicate<List<String>> validator) {
-        super(name, description, defaultValue);
+        super(name, description, ListUtils.toImmutableList(defaultValue)); // duplicate defaultValue to prevent modification
 
+        set(defaultValue); // want a mutable list
         this.validator = validator;
     }
 

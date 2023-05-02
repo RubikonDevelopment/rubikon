@@ -21,16 +21,18 @@ public abstract class Option<T> implements Serializable<T> {
 
     @Getter
     private final T defaultValue;
+    @Getter
     private T value;
 
     public Option(String name, String description, T defaultValue) {
         this.name = name;
         this.description = description;
+        this.value = defaultValue; // is replaced later with load()
         this.defaultValue = defaultValue;
     }
 
     public T get() {
-        return value != null ? value : defaultValue;
+        return value;
     }
 
     public boolean set(T value) {

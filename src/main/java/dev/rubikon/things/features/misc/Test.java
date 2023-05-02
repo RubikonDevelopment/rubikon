@@ -7,9 +7,9 @@ import dev.rubikon.settings.types.BoolOption;
 import dev.rubikon.settings.types.IntOption;
 import dev.rubikon.settings.types.StringListOption;
 import dev.rubikon.things.features.Feature;
+import dev.rubikon.utils.ListUtils;
 import dev.rubikon.utils.ChatUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_K;
@@ -36,11 +36,7 @@ public class Test extends Feature {
     private final Option<List<String>> randomWords = generalGroup.add(new StringListOption(
             "random-words",
             "List of random words",
-            new ArrayList<>() {{
-                add("test1");
-                add("test2");
-                add("test3");
-            }}
+            ListUtils.toArrayList("test1", "test2", "test3")
             )
     );
 

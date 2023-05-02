@@ -12,8 +12,6 @@ import dev.rubikon.utils.OptionsUtils;
 import net.minecraft.command.CommandSource;
 import net.minecraft.text.Text;
 
-import java.util.stream.Collectors;
-
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class OptionsCommand extends Command {
