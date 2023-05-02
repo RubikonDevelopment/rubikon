@@ -8,6 +8,21 @@ import dev.rubikon.things.features.Features;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents the things.
+ * This class is responsible for registering and managing all things.
+ * <p>
+ *     All things are stored in a HashMap for faster finding.
+ *     <br>
+ *     <br>
+ *     To register a thing, you need to call the {@link #add(Thing)} method.
+ *     <br>
+ *     <br>
+ *     You can access a thing using the {@link #get(Class)} method or directly using `get` method in `thing`.
+ * </p>
+ *
+ * @see Thing
+ */
 public class Things {
     private static final Map<Class<? extends Thing>, Thing<?>> things = new HashMap<>();
 
