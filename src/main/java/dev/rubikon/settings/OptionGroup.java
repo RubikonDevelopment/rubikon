@@ -12,11 +12,18 @@ import java.util.*;
 
 /**
  * Represents a group of options.
+ * <p>
+ *     Option groups are used to group options together.
+ * </p>
  * @see Option
+ * @see Options
  */
 public class OptionGroup implements Serializable, Store<String, Option> {
     @Getter
     private final String name;
+    /**
+     * Whether the group is expanded or not.
+     */
     @Getter
     @Setter
     private boolean expanded;
@@ -43,18 +50,35 @@ public class OptionGroup implements Serializable, Store<String, Option> {
         return option;
     }
 
+    /**
+     * Finds an option by its name.
+     * @param name The name of the option.
+     * @return The found option if found, `null` otherwise.
+     */
     public Option<?> find(String name) {
         return options.get(name);
     }
 
+    /**
+     * @return A collection of all option names.
+     */
     public Collection<String> names() {
         return options.keySet();
     }
 
+    /**
+     * @return A collection of all options.
+     */
     public Collection<Option<?>> all() {
         return options.values();
     }
 
+    /**
+     * Serializes the option group to a nbt tag.
+     * @return The nbt tag.
+     *
+     * @see #fromNbtTag(NbtCompound)
+     */
     @Override
     public NbtCompound toNbtTag() {
         NbtCompound nbt = new NbtCompound();
@@ -71,6 +95,11 @@ public class OptionGroup implements Serializable, Store<String, Option> {
         return nbt;
     }
 
+    /**
+     * Deserializes the nbtag to an option group.
+     * @param nbt The nbt tag.
+     * @return The option group.
+     */
     @Override
     public OptionGroup fromNbtTag(NbtCompound nbt) {
         if (nbt.contains("expanded")) expanded = nbt.getBoolean("expanded");

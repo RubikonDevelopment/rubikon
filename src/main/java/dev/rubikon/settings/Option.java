@@ -136,7 +136,7 @@ public abstract class Option<T> implements Serializable<T> {
     }
 
     /**
-     * Converts the option to a nbt tag.
+     * Serializes the option to a nbt tag.
      * <p>
      *     This method calls {@link #save(NbtCompound)} at bottom.
      * </p>
@@ -155,7 +155,7 @@ public abstract class Option<T> implements Serializable<T> {
     }
 
     /**
-     * Converts the nbt tag to an option.
+     * Deserializes the nbt tag to an option.
      * @param nbt The nbt tag.
      * @return The option.
      */
