@@ -11,7 +11,6 @@ import dev.rubikon.settings.Option;
 import dev.rubikon.things.features.Feature;
 import dev.rubikon.utils.ChatUtils;
 import net.minecraft.command.CommandSource;
-import net.minecraft.text.Text;
 
 import java.util.concurrent.CompletableFuture;
 
