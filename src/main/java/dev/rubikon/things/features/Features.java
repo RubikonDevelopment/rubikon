@@ -2,7 +2,7 @@ package dev.rubikon.things.features;
 
 import dev.rubikon.Rubikon;
 import dev.rubikon.events.KeyPressEvent;
-import dev.rubikon.things.features.visual.Logo;
+import dev.rubikon.things.features.misc.Logo;
 import dev.rubikon.utils.Store;
 import dev.rubikon.things.Thing;
 import dev.rubikon.things.Things;
@@ -15,7 +15,6 @@ import net.minecraft.nbt.NbtList;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.stream.Collectors;
 
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 
@@ -62,11 +61,6 @@ public class Features extends Thing<Features> implements Store<String, Feature> 
     public Collection<Feature> all() {
         return features.values();
     }
-
-    public Collection<Feature> findInCategory(FeatureCategory category) {
-        return features.values().stream().filter(feature -> feature.getFeatureCategory() == category).collect(Collectors.toList());
-    }
-
 
     @Override
     public NbtCompound toNbtTag() {

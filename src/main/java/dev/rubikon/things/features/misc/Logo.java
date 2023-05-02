@@ -1,10 +1,9 @@
-package dev.rubikon.things.features.visual;
+package dev.rubikon.things.features.misc;
 
 import dev.rubikon.events.ScreenRenderEvent;
 import dev.rubikon.renderer.core.Renderer;
 import dev.rubikon.renderer.core.nanovg.NVContext;
 import dev.rubikon.things.features.Feature;
-import dev.rubikon.things.features.FeatureCategory;
 import io.github.nevalackin.radbus.Listen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.SimpleFramebuffer;
@@ -22,7 +21,7 @@ import static org.lwjgl.opengl.GL11.glViewport;
 
 public class Logo extends Feature {
     public Logo() {
-        super("Logo","Lets you toggle rendering of the client logo", GLFW.GLFW_KEY_L, FeatureCategory.VISUAL);
+        super("Logo","Lets you toggle rendering of the client logo", GLFW.GLFW_KEY_L);
     }
     private int fbohandle;
     private SimpleFramebuffer framebuffer;

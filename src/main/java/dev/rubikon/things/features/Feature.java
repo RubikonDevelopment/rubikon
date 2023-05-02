@@ -21,9 +21,6 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
     private final String name;
     @Getter
     private final String description;
-
-    @Getter
-    private final FeatureCategory featureCategory;
     @Getter
     @Setter
     private int keybind;
@@ -35,11 +32,10 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
 
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
-    public Feature(String name, String description, int keybind,FeatureCategory featureCategory) {
+    public Feature(String name, String description, int keybind) {
         this.name = name;
         this.description = description;
         this.keybind = keybind;
-        this.featureCategory = featureCategory;
     }
 
     @Override
