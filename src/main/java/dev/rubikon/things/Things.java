@@ -1,5 +1,7 @@
 package dev.rubikon.things;
 
+import dev.rubikon.Rubikon;
+import dev.rubikon.events.DisconnectEvent;
 import dev.rubikon.things.commands.Commands;
 import dev.rubikon.things.features.Features;
 
@@ -12,10 +14,16 @@ public class Things {
     public static void init() {
         add(new Features());
         add(new Commands());
+
+        Rubikon.getEventPubSub().subscribe(DisconnectEvent.class, event -> save());
     }
 
     public static void load() {
         things.values().forEach(Thing::load);
+    }
+
+    public static void save() {
+        things.values().forEach(Thing::save);
     }
 
     private static void add(Thing<?> thing) {

@@ -18,6 +18,7 @@ import java.io.File;
  */
 public class Rubikon implements ModInitializer {
 	private static final String MOD_ID = "rubikon";
+	public static final String PRIMARY_COLOR = "#da2424";
 
 	/**
 	 * Base logger for Rubikon.

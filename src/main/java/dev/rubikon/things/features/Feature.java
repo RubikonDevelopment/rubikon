@@ -1,16 +1,14 @@
 package dev.rubikon.things.features;
 
 import dev.rubikon.Rubikon;
+import dev.rubikon.settings.Options;
 import dev.rubikon.utils.Serializable;
 import dev.rubikon.utils.Toggleable;
-import dev.rubikon.settings.Option;
 import dev.rubikon.utils.ChatUtils;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.nbt.NbtCompound;
-
-import java.util.ArrayList;
 
 /**
  * The base class for all features.
@@ -25,7 +23,7 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
     @Setter
     private int keybind;
     @Getter
-    private ArrayList<Option> settings = new ArrayList<>();
+    private final Options options = new Options();
     @Getter
     @Setter
     private boolean toggled = false;
@@ -62,6 +60,7 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
         nbt.putString("name", name);
         nbt.putInt("keybind", keybind);
         nbt.putBoolean("toggled", toggled);
+        nbt.put("options", options.toNbtTag());
 
         return nbt;
     }
@@ -70,6 +69,7 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
     public Feature fromNbtTag(NbtCompound nbtTag) {
         if (nbtTag.contains("keybind")) setKeybind(nbtTag.getInt("keybind"));
         if (nbtTag.contains("toggled")) setToggled(nbtTag.getBoolean("toggled"));
+        if (nbtTag.contains("options")) options.fromNbtTag((NbtCompound) nbtTag.get("options"));
 
         return this;
     }

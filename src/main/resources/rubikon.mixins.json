@@ -9,7 +9,6 @@
     "ChatInputSuggestorMixin",
     "ClientConnectionMixin",
     "ClientLoginNetworkHandlerMixin",
-    "ClientPlayNetworkHandler",
     "ClientPlayNetworkHandlerMixin",
     "GameRendererMixin",
     "KeyboardMixin",
