@@ -47,9 +47,10 @@ public class Commands extends Thing<Commands> implements Store<String, Command> 
 
     @Override
     public void init() {
+        add(new OptionsCommand());
+        add(new SaveCommand());
         add(new TestCommand());
         add(new ToggleCommand());
-        add(new OptionsCommand());
     }
 
     /**

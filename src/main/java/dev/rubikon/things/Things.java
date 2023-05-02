@@ -15,13 +15,15 @@ public class Things {
         add(new Features());
         add(new Commands());
 
-        Rubikon.getEventPubSub().subscribe(DisconnectEvent.class, (event) -> {
-            things.values().forEach(Thing::save);
-        });
+        Rubikon.getEventPubSub().subscribe(DisconnectEvent.class, event -> save());
     }
 
     public static void load() {
         things.values().forEach(Thing::load);
+    }
+
+    public static void save() {
+        things.values().forEach(Thing::save);
     }
 
     private static void add(Thing<?> thing) {
