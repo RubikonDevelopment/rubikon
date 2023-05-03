@@ -36,7 +36,6 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
     @Getter
     private final Options options = new Options();
     @Getter
-    @Setter
     private boolean toggled = false;
 
     /**
@@ -78,18 +77,52 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
      */
     @Override
     public void toggle() {
-        toggled = !toggled;
+        toggle(false);
+    }
+
+    /**
+     * Toggle the feature.
+     * <p>
+     *     If the feature is enabled, it will be disabled and vice versa.
+     *     <br>
+     *     <br>
+     *     This method also subscribes and unsubscribes the feature to the {@link Rubikon#getEventPubSub()}.
+     *     <br>
+     *     <br>
+     *     If the feature is enabled, the {@link #onEnable()} method will be called.
+     *     <br>
+     *     If the feature is disabled, the {@link #onDisable()} method will be called.
+     *     <br>
+     *     <br>
+     *     This method also sends a message to the chat.
+     * </p>
+     * @param sendMessage Whether to send a message to the player.
+     *
+     * @see #toggle()
+     * @see Rubikon#getEventPubSub()
+     * @see #onEnable()
+     * @see #onDisable()
+     */
+    @Override
+    public void toggle(boolean sendMessage) {
+        setToggled(!toggled, sendMessage);
+    }
+
+    private void setToggled(boolean toggled, boolean sendMessage) {
+        this.toggled = toggled;
 
         if (toggled) {
             Rubikon.getEventPubSub().subscribe(this);
             onEnable();
 
-            ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#3df518>enabled<white>.", name);
+            if (sendMessage)
+                ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#3df518>enabled<white>.", name);
         } else {
             onDisable();
             Rubikon.getEventPubSub().unsubscribe(this);
 
-            ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#eb3528>disabled<white>.", name);
+            if (sendMessage)
+                ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#eb3528>disabled<white>.", name);
         }
     }
 
@@ -108,7 +141,7 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
     @Override
     public Feature fromNbtTag(NbtCompound nbtTag) {
         if (nbtTag.contains("keybind")) setKeybind(nbtTag.getInt("keybind"));
-        if (nbtTag.contains("toggled")) setToggled(nbtTag.getBoolean("toggled"));
+        if (nbtTag.contains("toggled")) setToggled(nbtTag.getBoolean("toggled"), false);
         if (nbtTag.contains("options")) options.fromNbtTag((NbtCompound) nbtTag.get("options"));
 
         return this;

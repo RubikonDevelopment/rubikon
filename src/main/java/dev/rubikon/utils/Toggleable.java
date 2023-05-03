@@ -11,6 +11,12 @@ public interface Toggleable {
     void toggle();
 
     /**
+     * Toggles the feature.
+     * @param sendMessage Whether to send a message to the player.
+     */
+    void toggle(boolean sendMessage);
+
+    /**
      * Runs when the feature is enabled.
      * <p>
      *     This method is called in the {@link #toggle()} method.
