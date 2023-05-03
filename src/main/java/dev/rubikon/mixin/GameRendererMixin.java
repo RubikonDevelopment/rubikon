@@ -22,7 +22,6 @@ import java.util.function.Consumer;
 
 
 @Mixin(GameRenderer.class)
-@Debug(export = true)
 public abstract class GameRendererMixin {
     @Shadow public abstract void tick();
 
