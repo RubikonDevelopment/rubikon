@@ -15,9 +15,21 @@ import java.nio.file.*;
 import static org.lwjgl.BufferUtils.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
+/**
+ * Represents a utility class for resource-related operations.
+ */
 @UtilityClass
 public class ResourceUtils {
-
+    /**
+     * Resizes the specified buffer to the specified new capacity.
+     * @param buffer The buffer to resize.
+     * @param newCapacity The new capacity.
+     * @return The resized buffer.
+     *
+     * @throws BufferOverflowException If the new capacity is less than the current capacity.
+     * @throws ReadOnlyBufferException If the buffer is read-only.
+     * @throws IllegalArgumentException If the source buffer is the same as the destination buffer.
+     */
     private static ByteBuffer resizeBuffer(ByteBuffer buffer, int newCapacity) {
         ByteBuffer newBuffer = BufferUtils.createByteBuffer(newCapacity);
         buffer.flip();
@@ -70,6 +82,14 @@ public class ResourceUtils {
         buffer.flip();
         return memSlice(buffer);
     }
+
+    /**
+     * Loads the specified resource and returns the raw data as a ByteBuffer.
+     * @param resource The resource to load.
+     * @return The buffer containing the resource data.
+     *
+     * @throws RuntimeException If the resource could not be loaded.
+     */
     public static ByteBuffer load(String resource){
         try {
             return ResourceUtils.ioResourceToByteBuffer(resource, 150 * 1024);
@@ -77,6 +97,14 @@ public class ResourceUtils {
             throw new RuntimeException("Failed to load resource: " + resource, e);
         }
     }
+
+    /**
+     * Loads the specified image and returns the raw data as a ByteBuffer.
+     * @param resource The image to load.
+     * @return The buffer containing the image data.
+     *
+     * @throws RuntimeException If the image could not be loaded.
+     */
     public static ByteBuffer loadImage(String resource){
         try {
             return ResourceUtils.ioResourceToByteBuffer(resource, 32 * 1024);

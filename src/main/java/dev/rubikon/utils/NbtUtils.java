@@ -5,10 +5,7 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.nbt.NbtString;
 
 /**
- * Utility class for nbt tags.
- *
- * @see NbtList
- * @see NbtString
+ * Represents a utility class for NBT-related operations.
  */
 @UtilityClass
 public class NbtUtils {
@@ -16,6 +13,9 @@ public class NbtUtils {
      * Converts a list of serializable objects to an NbtList.
      * @param list The list of serializable objects to convert.
      * @return The converted NbtList.
+     *
+     * @see Serializable
+     * @see NbtList
      */
     public static <T extends Serializable<?>> NbtList listToTag(Iterable<T> list) {
         NbtList tag = new NbtList();
@@ -29,6 +29,10 @@ public class NbtUtils {
      * Converts a list of strings to an NbtList.
      * @param list The list of strings to convert.
      * @return The converted NbtList.
+     *
+     * @see Serializable
+     * @see NbtList
+     * @see NbtString
      */
     public static <T extends Serializable<?>> NbtList stringListToTag(Iterable<String> list) {
         NbtList tag = new NbtList();
