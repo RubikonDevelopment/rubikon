@@ -6,6 +6,7 @@ package dev.rubikon.utils;
  */
 public interface Toggleable {
     void toggle();
+    void toggle(boolean sendMessage);
     default void onEnable() {};
     default void onDisable() {};
 }
