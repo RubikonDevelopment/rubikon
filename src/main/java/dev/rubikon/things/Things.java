@@ -74,7 +74,7 @@ public class Things {
      *
      * @see Thing
      */
-    private static void add(Thing<?> thing) {
+    public static void add(Thing<?> thing) {
         things.put(thing.getClass(), thing);
         thing.init();
     }

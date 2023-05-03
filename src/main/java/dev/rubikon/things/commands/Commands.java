@@ -48,10 +48,11 @@ public class Commands extends Thing<Commands> implements Store<String, Command> 
     /**
      * Initializes all commands.
      * <p>
-     *     This method is called in the {@link Things#init()} method.
+     *     This method is called in the {@link Things#add(Thing)} method.
      * </p>
      *
      * @see Things#init()
+     * @see Things#add(Thing)
      */
     @Override
     public void init() {

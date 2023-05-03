@@ -48,10 +48,12 @@ public class Features extends Thing<Features> implements Store<String, Feature> 
      *     This method subscribes to the {@link KeyPressEvent} event.
      *     <br>
      *     <br>
-     *     This method is called in the {@link Things#init()} method.
+     *     This method is called in the {@link Things#add(Thing)} method.
      * </p>
      *
+     * @see KeyPressEvent
      * @see Things#init()
+     * @see Things#add(Thing)
      */
     @Override
     public void init() {
