@@ -18,7 +18,7 @@ public class ToggleCommand extends Command {
         builder.then(argument("feature", FeatureArgumentType.create()).executes(context -> {
             Feature feature = context.getArgument("feature", Feature.class);
 
-            feature.toggle();
+            feature.toggle(true);
             return SINGLE_SUCCESS;
         }));
     }
