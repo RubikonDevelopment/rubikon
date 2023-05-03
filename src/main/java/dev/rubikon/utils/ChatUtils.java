@@ -1,5 +1,6 @@
 package dev.rubikon.utils;
 
+import dev.rubikon.Rubikon;
 import lombok.experimental.UtilityClass;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.MutableText;
@@ -13,7 +14,7 @@ import net.minecraft.util.Formatting;
  */
 @UtilityClass
 public class ChatUtils {
-    private static final TextColor HIGHLIGHT_COLOR = TextColor.parse("#da2424");
+    private static final TextColor HIGHLIGHT_COLOR = TextColor.parse(Rubikon.PRIMARY_COLOR);
     private static final Text PREFIX = Text.literal("Rubikon")
             .setStyle(Style.EMPTY.withBold(true).withColor(HIGHLIGHT_COLOR));
 
@@ -57,7 +58,7 @@ public class ChatUtils {
         return message;
     }
 
-    private static MutableText format(String input, Object... args) {
+    public static MutableText format(String input, Object... args) {
         input = String.format(input, args);
 
         MutableText output = Text.literal("");

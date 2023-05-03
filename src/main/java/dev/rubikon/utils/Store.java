@@ -1,5 +1,7 @@
 package dev.rubikon.utils;
 
+import dev.rubikon.settings.Option;
+
 import java.util.Collection;
 
 public interface Store<T, U> {
@@ -7,5 +9,5 @@ public interface Store<T, U> {
     default void add(T name, U item) {};
     U find(T name);
     Collection<T> names();
-    Collection<U> all();
+    Collection<? extends U> all();
 }

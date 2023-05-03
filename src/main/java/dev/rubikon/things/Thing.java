@@ -33,6 +33,8 @@ public abstract class Thing<T> implements Serializable<T> {
 
     public void save(File folder) {
         File file = folder == null ? this.file : new File(folder.getPath(), this.file.getName());
+        System.out.println(file.getAbsolutePath());
+        System.out.println(name);
 
         try {
             NbtCompound nbt = toNbtTag();
