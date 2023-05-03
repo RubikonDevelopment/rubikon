@@ -25,7 +25,6 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
     @Getter
     private final Options options = new Options();
     @Getter
-    @Setter
     private boolean toggled = false;
 
     protected MinecraftClient mc = MinecraftClient.getInstance();
@@ -38,18 +37,29 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
 
     @Override
     public void toggle() {
-        toggled = !toggled;
+        toggle(false);
+    }
+
+    @Override
+    public void toggle(boolean sendMessage) {
+        setToggled(!toggled, sendMessage);
+    }
+
+    private void setToggled(boolean toggled, boolean sendMessage) {
+        this.toggled = toggled;
 
         if (toggled) {
             Rubikon.getEventPubSub().subscribe(this);
             onEnable();
 
-            ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#3df518>enabled<white>.", name);
+            if (sendMessage)
+                ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#3df518>enabled<white>.", name);
         } else {
             onDisable();
             Rubikon.getEventPubSub().unsubscribe(this);
 
-            ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#eb3528>disabled<white>.", name);
+            if (sendMessage)
+                ChatUtils.sendMessage("Feature<highlight> %s <white>has been <#eb3528>disabled<white>.", name);
         }
     }
 
@@ -68,7 +78,7 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
     @Override
     public Feature fromNbtTag(NbtCompound nbtTag) {
         if (nbtTag.contains("keybind")) setKeybind(nbtTag.getInt("keybind"));
-        if (nbtTag.contains("toggled")) setToggled(nbtTag.getBoolean("toggled"));
+        if (nbtTag.contains("toggled")) setToggled(nbtTag.getBoolean("toggled"), false);
         if (nbtTag.contains("options")) options.fromNbtTag((NbtCompound) nbtTag.get("options"));
 
         return this;
