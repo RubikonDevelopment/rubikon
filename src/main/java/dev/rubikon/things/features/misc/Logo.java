@@ -1,12 +1,16 @@
 package dev.rubikon.things.features.misc;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import dev.rubikon.events.ScreenRenderEvent;
 import dev.rubikon.renderer.core.Renderer;
 import dev.rubikon.renderer.core.nanovg.NVContext;
 import dev.rubikon.things.features.Feature;
 import io.github.nevalackin.radbus.Listen;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.SimpleFramebuffer;
+import net.minecraft.client.render.*;
+import org.joml.Matrix4f;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.nanovg.NVGColor;
 import org.lwjgl.nanovg.NVGPaint;
@@ -29,40 +33,45 @@ public class Logo extends Feature {
     @Override
     public void onEnable() {
         framebuffer = new SimpleFramebuffer(mc.getWindow().getWidth(),mc.getWindow().getHeight(),false,false);
+
+        Renderer.getShader().getEffect().setupDimensions(mc.getWindow().getWidth(),mc.getWindow().getHeight());
+        HudRenderCallback.EVENT.register((matrixStack, tickDelta) -> {
+            Renderer.getShader().getEffect().render(tickDelta);
+        });
     }
 
     @Listen
     public void onRender(ScreenRenderEvent event) {
-        int image = Renderer.getInstance().find("rubikon-icon");
+        //int image = Renderer.getInstance().find("rubikon-icon");
         // TODO shader for text
-        drawtofbo();
-        //render the text
-        NVContext.draw(ctx -> {
-            createHandle();
-            //alloc memory
-            //TODO implement rasterizer
-            try (MemoryStack stack = MemoryStack.stackPush()) {
-                //get default image size
-                IntBuffer pW = stack.mallocInt(1);
-                IntBuffer pH = stack.mallocInt(1);
-                //set it
-                nvgImageSize(ctx, image, pW, pH);
-                //clear paths
-                nvgBeginPath(ctx);
-                nvgRect(ctx, 2, 4, 25, 25);
-                NVGPaint logoPaint = NVGPaint.create();
-                //creates fbo as a image and binds it onto the paint
-                nvgImagePattern(ctx, 0.5f, 1, 30, 30, 0.f, fbohandle, 1.f, logoPaint);
-                nvgFillPaint(ctx, logoPaint);
-                nvgFill(ctx);
-            }
-            nvgFontFace(ctx,"sfui-bold");
-            nvgFontSize(ctx,24.f);
-            NVGColor fillcolor = nvgColor(-1);
-            nvgFillColor(ctx,fillcolor);
-            //draw text
-            nvgText(ctx,25,25,"Rubikon");
-        });
+
+//        //render the text
+//        NVContext.draw(ctx -> {
+//            createHandle();
+//            //alloc memory
+//            //TODO implement rasterizer
+//            try (MemoryStack stack = MemoryStack.stackPush()) {
+//                //get default image size
+//                IntBuffer pW = stack.mallocInt(1);
+//                IntBuffer pH = stack.mallocInt(1);
+//                //set it
+//                nvgImageSize(ctx, image, pW, pH);
+//                //clear paths
+//                nvgBeginPath(ctx);
+//                nvgRect(ctx, 2, 4, 25, 25);
+//                NVGPaint logoPaint = NVGPaint.create();
+//                //creates fbo as a image and binds it onto the paint
+//                nvgImagePattern(ctx, 0.5f, 1, 30, 30, 0.f, fbohandle, 1.f, logoPaint);
+//                nvgFillPaint(ctx, logoPaint);
+//                nvgFill(ctx);
+//            }
+//            nvgFontFace(ctx,"sfui-bold");
+//            nvgFontSize(ctx,24.f);
+//            NVGColor fillcolor = nvgColor(-1);
+//            nvgFillColor(ctx,fillcolor);
+//            //draw text
+//            nvgText(ctx,25,25,"Rubikon");
+//        });
     }
 
     public static NVGColor nvgColor(int argb) {
@@ -82,28 +91,5 @@ public class Logo extends Feature {
         fbohandle = nvglCreateImageFromHandle(NVContext.getContext(),framebuffer.getColorAttachment(),framebuffer.textureWidth,framebuffer.textureHeight,NVG_IMAGE_FLIPY);
     }
 
-    public void drawtofbo() {
-        if (this.fbohandle != 0) return;
-        int fbowidth = this.framebuffer.textureWidth;
-        int fboheight = this.framebuffer.textureHeight;
-        glViewport(0, 0, fbowidth, fboheight);
-        this.framebuffer.beginWrite(false);
-        Renderer.getInstance().shader.bind();
-        Renderer.getInstance().shader.uniform2f("resolution",fbowidth,fboheight);
-        double seconds = System.nanoTime() / (1_000_000.0 * 1_000.0);
-        float fSecs = (float) (seconds % Float.MAX_VALUE);
-        Renderer.getInstance().shader.uniform1f("time",fSecs);
-        glBegin(GL_QUADS);
-        {
-            glVertex2f(0.f, 0.f);
-            glVertex2f(0.f, mc.getWindow().getHeight());
-            glVertex2f(mc.getWindow().getScaledWidth(), mc.getWindow().getHeight());
-            glVertex2f(mc.getWindow().getScaledWidth(), 0.f);
-        }
-        glEnd();
 
-        // stop using shader
-        Renderer.getInstance().shader.unbind();
-        MinecraftClient.getInstance().getFramebuffer().beginWrite(true);
-    }
 }

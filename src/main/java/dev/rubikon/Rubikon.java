@@ -1,5 +1,6 @@
 package dev.rubikon;
 
+import com.llamalad7.mixinextras.MixinExtrasBootstrap;
 import dev.rubikon.renderer.shader.Shader;
 import dev.rubikon.utils.Event;
 import dev.rubikon.renderer.core.Renderer;
@@ -41,6 +42,8 @@ public class Rubikon implements ModInitializer {
 	 */
 	@Override
 	public void onInitialize() {
+		//initializes mixin extras
+		MixinExtrasBootstrap.init();
 		if (!FOLDER.exists()) {
 			FOLDER.getParentFile().mkdirs();
 			FOLDER.mkdir();
