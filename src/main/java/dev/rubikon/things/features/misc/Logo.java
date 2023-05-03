@@ -34,9 +34,23 @@ public class Logo extends Feature {
     public void onEnable() {
         framebuffer = new SimpleFramebuffer(mc.getWindow().getWidth(),mc.getWindow().getHeight(),false,false);
 
-        Renderer.getShader().getEffect().setupDimensions(mc.getWindow().getWidth(),mc.getWindow().getHeight());
+        //Renderer.getShader().getEffect().setupDimensions(mc.getWindow().getWidth(),mc.getWindow().getHeight());
         HudRenderCallback.EVENT.register((matrixStack, tickDelta) -> {
-            Renderer.getShader().getEffect().render(tickDelta);
+            //Renderer.getShader().getEffect().render(tickDelta);
+
+            Matrix4f positionMatrix = matrixStack.peek().getPositionMatrix();
+            Tessellator tessellator = Tessellator.getInstance();
+            BufferBuilder buffer = tessellator.getBuffer();
+
+            buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION);
+            buffer.vertex(positionMatrix, 20, 20, 0).next();
+            buffer.vertex(positionMatrix, 20, 60, 0).next();
+            buffer.vertex(positionMatrix, 60, 60, 0).next();
+            buffer.vertex(positionMatrix, 60, 20, 0).next();
+
+            RenderSystem.setShader(() -> Renderer.getInstance().getTestProgram());
+
+            tessellator.draw();
         });
     }
 

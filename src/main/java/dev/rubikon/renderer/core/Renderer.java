@@ -1,16 +1,12 @@
 package dev.rubikon.renderer.core;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import dev.rubikon.renderer.shader.Shader;
 import dev.rubikon.utils.Store;
 import dev.rubikon.renderer.core.imgui.ImGuiContext;
 import dev.rubikon.renderer.core.nanovg.NVContext;
 import lombok.Getter;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gl.Framebuffer;
-import net.minecraft.client.render.*;
-import org.joml.Matrix4f;
+import lombok.Setter;
+import net.minecraft.client.gl.ShaderProgram;
 
 import java.nio.ByteBuffer;
 import java.util.Collection;
@@ -26,13 +22,16 @@ public class Renderer implements Store<String, Integer> {
     private static Renderer instance;
     private final ByteBuffer SFUI_BOLD = load("assets/rubikon/fonts/SFUI-Bold.ttf");
     private final ByteBuffer RUBIKON_ICON = loadImage("assets/rubikon/icon.png");
+    @Getter
+    @Setter
+    private ShaderProgram testProgram;
+    private static Shader shader;
     private final HashMap<String, Integer> renderers = new HashMap<>();
-
 
     public Renderer() {
         instance = this;
     }
-    private static Shader shader;
+
     public void init() {
         NVContext.init();
         ImGuiContext.init();

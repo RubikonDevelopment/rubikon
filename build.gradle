@@ -42,9 +42,6 @@ dependencies {
 	compileOnly "org.projectlombok:lombok:1.18.26"
 	annotationProcessor "org.projectlombok:lombok:1.18.26"
 
-	implementation "com.github.LlamaLad7:MixinExtras:0.1.1"
-	annotationProcessor "com.github.LlamaLad7:MixinExtras:0.1.1"
-
 	// Uncomment the following line to enable the deprecated Fabric API modules.
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
