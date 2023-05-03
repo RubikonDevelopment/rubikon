@@ -41,7 +41,7 @@ public abstract class GameRendererMixin {
             ),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void onLoadPrograms(ResourceFactory factory, CallbackInfo ci, List list, List list2) {
+    private void onLoadPrograms(ResourceFactory factory, CallbackInfo ci, List<Object> list, List<Object> list2) {
         try {
             list2.add(Pair.<ShaderProgram, Consumer<ShaderProgram>>of(new ShaderProgram(factory, "test", VertexFormats.POSITION), program -> {
                 Renderer.getInstance().setTestProgram(program);

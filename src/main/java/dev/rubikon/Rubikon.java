@@ -1,7 +1,5 @@
 package dev.rubikon;
 
-import com.llamalad7.mixinextras.MixinExtrasBootstrap;
-import dev.rubikon.renderer.shader.Shader;
 import dev.rubikon.utils.Event;
 import dev.rubikon.renderer.core.Renderer;
 import dev.rubikon.things.Things;
@@ -10,7 +8,6 @@ import lombok.Getter;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,8 +40,6 @@ public class Rubikon implements ModInitializer {
 	 */
 	@Override
 	public void onInitialize() {
-		//initializes mixin extras
-		MixinExtrasBootstrap.init();
 		if (!FOLDER.exists()) {
 			FOLDER.getParentFile().mkdirs();
 			FOLDER.mkdir();
