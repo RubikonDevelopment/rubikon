@@ -30,9 +30,6 @@ public class Things {
     /**
      * Initializes all things.
      * <p>
-     *     This method is used to initialize all things.
-     *     <br>
-     *     <br>
      *     This method is called in the {@link Rubikon#onInitialize()}  method.
      * </p>
      *

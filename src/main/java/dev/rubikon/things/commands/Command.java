@@ -16,7 +16,7 @@ import java.util.List;
  * Represents a base class for all commands.
  * <p>
  *     This class is used to register commands and their arguments.
- *     It also provides a few helper methods to make the process easier.
+ *     It also provides a few helper methods and fields to make the process easier.
  *     <br>
  *     <br>
  *     To create a new command, you need to extend this class and implement the {@link #build(LiteralArgumentBuilder)} method.
@@ -36,6 +36,14 @@ public abstract class Command {
     @Getter
     private final List<String> aliases = new ArrayList<>();
 
+    /**
+     * Provides an instance of the Minecraft Client.
+     * <p>
+     *     This is a shortcut to {@link MinecraftClient#getInstance()}.
+     * </p>
+     *
+     * @see MinecraftClient#getInstance()
+     */
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
     protected Command(String name, String description, String... aliases) {

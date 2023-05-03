@@ -45,6 +45,14 @@ public class Commands extends Thing<Commands> implements Store<String, Command> 
         super("commands");
     }
 
+    /**
+     * Initializes all commands.
+     * <p>
+     *     This method is called in the {@link Things#init()} method.
+     * </p>
+     *
+     * @see Things#init()
+     */
     @Override
     public void init() {
         add(new OptionsCommand());
