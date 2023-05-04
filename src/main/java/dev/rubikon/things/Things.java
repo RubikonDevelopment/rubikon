@@ -40,6 +40,7 @@ public class Things {
         add(new Commands());
 
         Rubikon.getEventPubSub().subscribe(DisconnectEvent.class, event -> save());
+        Runtime.getRuntime().addShutdownHook(new Thread(Things::save));
     }
 
     /**
