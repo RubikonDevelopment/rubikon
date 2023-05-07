@@ -1,13 +1,14 @@
 package dev.rubikon.things.features.misc;
 
 import dev.rubikon.events.TickEvent;
+import dev.rubikon.things.features.Categories;
 import dev.rubikon.things.features.Feature;
 import io.github.nevalackin.radbus.Listen;
 import org.lwjgl.glfw.GLFW;
 
 public class Sprint extends Feature {
     public Sprint() {
-        super("Sprint","Lets you sprint without holding any key", GLFW.GLFW_KEY_F);
+        super("Sprint","Lets you sprint without holding any key", Categories.MISC, GLFW.GLFW_KEY_F);
     }
 
     @Override
