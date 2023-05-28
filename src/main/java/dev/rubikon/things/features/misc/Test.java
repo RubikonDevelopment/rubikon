@@ -6,6 +6,7 @@ import dev.rubikon.settings.OptionGroup;
 import dev.rubikon.settings.types.BoolOption;
 import dev.rubikon.settings.types.IntOption;
 import dev.rubikon.settings.types.StringListOption;
+import dev.rubikon.things.features.Categories;
 import dev.rubikon.things.features.Feature;
 import dev.rubikon.utils.ListUtils;
 import dev.rubikon.utils.ChatUtils;
@@ -41,7 +42,7 @@ public class Test extends Feature {
     );
 
     public Test() {
-        super("Test", "Developer feature for testing purposes", GLFW_KEY_K);
+        super("Test", "Developer feature for testing purposes", Categories.MISC, GLFW_KEY_K);
     }
 
     @Override

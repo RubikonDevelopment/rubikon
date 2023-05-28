@@ -3,6 +3,7 @@ package dev.rubikon.things.features.misc;
 import dev.rubikon.events.ScreenRenderEvent;
 import dev.rubikon.renderer.core.Renderer;
 import dev.rubikon.renderer.core.nanovg.NVContext;
+import dev.rubikon.things.features.Categories;
 import dev.rubikon.things.features.Feature;
 import io.github.nevalackin.radbus.Listen;
 import org.lwjgl.glfw.GLFW;
@@ -15,7 +16,7 @@ import static org.lwjgl.nanovg.NanoVG.*;
 
 public class Logo extends Feature {
     public Logo() {
-        super("Logo","Lets you toggle rendering of the client logo", GLFW.GLFW_KEY_L);
+        super("Logo","Lets you toggle rendering of the client logo", Categories.MISC, GLFW.GLFW_KEY_L);
     }
 
     @Override
