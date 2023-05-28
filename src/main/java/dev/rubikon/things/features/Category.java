@@ -3,6 +3,14 @@ package dev.rubikon.things.features;
 import lombok.Getter;
 import net.minecraft.item.Item;
 
+/**
+ * Represents a category for features.
+ * <p>
+ *     Categories are used to group features together.
+ * </p>
+ *
+ * @see Categories
+ */
 public class Category {
     @Getter
     private final String name;
