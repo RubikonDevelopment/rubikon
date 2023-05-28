@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="https://avatars.githubusercontent.com/u/132217641?s=256&v=4" alt="Hyro" width="256">
+  <img src="https://avatars.githubusercontent.com/u/132272915?s=256&v=4" alt="Hyro" width="256">
   <br>
 </h1>
 
