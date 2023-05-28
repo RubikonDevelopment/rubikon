@@ -3,8 +3,9 @@ package dev.rubikon.events;
 import dev.rubikon.utils.Event;
 
 /**
- * @param key The key code of the pressed key
- * @param action Type of the key event, can be one of these values:
+ * Represents the key press event.
+ * @param key The key code of the key event.
+ * @param action The action of the key event. Can be one of the following:
  *      <ul>
  *               <li>0) {@link org.lwjgl.glfw.GLFW#GLFW_RELEASE GLFW_RELEASE}</li>
  *               <li>1) {@link org.lwjgl.glfw.GLFW#GLFW_PRESS GLFW_PRESS}</li>

@@ -2,15 +2,12 @@ package dev.rubikon.utils;
 
 import dev.rubikon.settings.ListOption;
 import dev.rubikon.settings.Option;
-import dev.rubikon.settings.types.StringListOption;
 import lombok.experimental.UtilityClass;
 
 import java.util.stream.Collectors;
 
 /**
- * Utility class for options.
- *
- * @see Option
+ * Represents a utility class for option-related operations.
  */
 @UtilityClass
 public class OptionsUtils {
@@ -27,6 +24,13 @@ public class OptionsUtils {
         return option instanceof ListOption;
     }
 
+    /**
+     * Converts a list option to a string.
+     * @param option The option to convert.
+     * @return The string representation of the option.
+     *
+     * @throws ClassCastException If the option is not a list. Use {@link #isList(Option)} to check.
+     */
     public static String listToString(Option<?> option) {
         return ((ListOption<?>) option).get().stream().map(Object::toString).collect(Collectors.joining(", "));
     }

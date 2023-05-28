@@ -11,8 +11,19 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.nbt.NbtCompound;
 
 /**
- * The base class for all features.
- * All features have to extend this class.
+ * Represents a base class for all features.
+ * <p>
+ *     This class provides a few helper methods and fields to make the process easier.
+ *     <br
+ *     <br>
+ *     To create a new feature, you need to extend this class and implement the {@link #onEnable()} and {@link #onDisable()} methods.
+ *     <br>
+ *     <br>
+ *     To register a feature, you need to call the {@link Features#add(Feature)} method.
+ * </p>
+ *
+ * @see Features
+ * @see Options
  */
 public abstract class Feature implements Toggleable, Serializable<Feature> {
     @Getter
@@ -29,6 +40,14 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
     @Getter
     private boolean toggled = false;
 
+    /**
+     * Provides an instance of the Minecraft Client.
+     * <p>
+     *     This is a shortcut to {@link MinecraftClient#getInstance()}.
+     * </p>
+     *
+     * @see MinecraftClient#getInstance()
+     */
     protected MinecraftClient mc = MinecraftClient.getInstance();
 
     public Feature(String name, String description, Category category) {
@@ -44,11 +63,55 @@ public abstract class Feature implements Toggleable, Serializable<Feature> {
         this.keybind = keybind;
     }
 
+    /**
+     * Toggle the feature.
+     * <p>
+     *     If the feature is enabled, it will be disabled and vice versa.
+     *     <br>
+     *     <br>
+     *     This method also subscribes and unsubscribes the feature to the {@link Rubikon#getEventPubSub()}.
+     *     <br>
+     *     <br>
+     *     If the feature is enabled, the {@link #onEnable()} method will be called.
+     *     <br>
+     *     If the feature is disabled, the {@link #onDisable()} method will be called.
+     *     <br>
+     *     <br>
+     *     This method also sends a message to the chat.
+     * </p>
+     *
+     * @see Rubikon#getEventPubSub()
+     * @see #onEnable()
+     * @see #onDisable()
+     */
     @Override
     public void toggle() {
         toggle(false);
     }
 
+    /**
+     * Toggle the feature.
+     * <p>
+     *     If the feature is enabled, it will be disabled and vice versa.
+     *     <br>
+     *     <br>
+     *     This method also subscribes and unsubscribes the feature to the {@link Rubikon#getEventPubSub()}.
+     *     <br>
+     *     <br>
+     *     If the feature is enabled, the {@link #onEnable()} method will be called.
+     *     <br>
+     *     If the feature is disabled, the {@link #onDisable()} method will be called.
+     *     <br>
+     *     <br>
+     *     This method also sends a message to the chat.
+     * </p>
+     * @param sendMessage Whether to send a message to the player.
+     *
+     * @see #toggle()
+     * @see Rubikon#getEventPubSub()
+     * @see #onEnable()
+     * @see #onDisable()
+     */
     @Override
     public void toggle(boolean sendMessage) {
         setToggled(!toggled, sendMessage);

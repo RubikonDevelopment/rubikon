@@ -30,6 +30,10 @@ public class Rubikon implements ModInitializer {
 	 */
 	public static final File FOLDER = FabricLoader.getInstance().getGameDir().resolve(MOD_ID).toFile();
 
+	/**
+	 * The event bus for Rubikon.
+	 * @see PubSub
+	 */
 	@Getter
 	private static final PubSub<Event> eventPubSub = PubSub.newInstance(LOGGER::error);
 

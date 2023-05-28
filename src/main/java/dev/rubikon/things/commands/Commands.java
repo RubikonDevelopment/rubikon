@@ -45,6 +45,15 @@ public class Commands extends Thing<Commands> implements Store<String, Command> 
         super("commands");
     }
 
+    /**
+     * Initializes all commands.
+     * <p>
+     *     This method is called in the {@link Things#add(Thing)} method.
+     * </p>
+     *
+     * @see Things#init()
+     * @see Things#add(Thing)
+     */
     @Override
     public void init() {
         add(new OptionsCommand());
@@ -70,7 +79,7 @@ public class Commands extends Thing<Commands> implements Store<String, Command> 
      *     It uses {@link CommandDispatcher} to register the command.
      *     <br>
      *     <br>
-     *     This method is called by the {@link #init()} method.
+     *     This method is called in the {@link #init()} method.
      * </p>
      * @param command The command to register.
      *

@@ -5,7 +5,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 /**
- * Utility class for registries.
+ * Represents a utility class for registry-related operations.
  */
 @UtilityClass
 public class RegistriesUtils {

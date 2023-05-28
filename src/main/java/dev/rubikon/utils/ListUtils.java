@@ -7,11 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Utility class for lists.
- *
- * @see List
- * @see ArrayList
- * @see ImmutableList
+ * Represents a utility class for list-related operations.
  */
 @UtilityClass
 public class ListUtils {
@@ -19,6 +15,8 @@ public class ListUtils {
      * Converts a list of values to an ArrayList.
      * @param value The list of values to convert.
      * @return The converted ArrayList.
+     *
+     * @see ArrayList
      */
     @SafeVarargs
     public static <T> ArrayList<T> toArrayList(T... value) {
@@ -29,6 +27,8 @@ public class ListUtils {
      * Converts a list of values to an ImmutableList.
      * @param value The list of values to convert.
      * @return The converted ImmutableList.
+     *
+     * @see ImmutableList
      */
     public static <T> ImmutableList<T> toImmutableList(List<T> value) {
         return ImmutableList.<T>builder().addAll(value).build();
