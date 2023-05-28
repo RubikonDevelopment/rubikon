@@ -1,9 +1,12 @@
 package dev.rubikon.renderer.core;
 
+import dev.rubikon.renderer.shader.Shader;
 import dev.rubikon.utils.Store;
 import dev.rubikon.renderer.core.imgui.ImGuiContext;
 import dev.rubikon.renderer.core.nanovg.NVContext;
 import lombok.Getter;
+import lombok.Setter;
+import net.minecraft.client.gl.ShaderProgram;
 
 import java.nio.ByteBuffer;
 import java.util.Collection;
@@ -19,6 +22,10 @@ public class Renderer implements Store<String, Integer> {
     private static Renderer instance;
     private final ByteBuffer SFUI_BOLD = load("assets/rubikon/fonts/SFUI-Bold.ttf");
     private final ByteBuffer RUBIKON_ICON = loadImage("assets/rubikon/icon.png");
+    @Getter
+    @Setter
+    private ShaderProgram testProgram;
+    private static Shader shader;
     private final HashMap<String, Integer> renderers = new HashMap<>();
 
     public Renderer() {
@@ -28,6 +35,7 @@ public class Renderer implements Store<String, Integer> {
     public void init() {
         NVContext.init();
         ImGuiContext.init();
+        shader = new Shader();
 
         add("sfui-bold", nvgCreateFontMem(getContext(),"sfui-bold", SFUI_BOLD, false));
         add("rubikon-icon", nvgCreateImageMem(getContext(), NVG_IMAGE_GENERATE_MIPMAPS, RUBIKON_ICON));
@@ -36,6 +44,10 @@ public class Renderer implements Store<String, Integer> {
     @Override
     public void add(String name, Integer item) {
         renderers.put(name, item);
+    }
+
+    public static Shader getShader() {
+        return shader;
     }
 
     @Override
